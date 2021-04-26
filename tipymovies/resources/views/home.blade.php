@@ -8,7 +8,7 @@
 <title>Tipy Movies</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="C:/xampp/htdocs/Php/TIpymovies/tipymovies/resources/css/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
 <div class="bgded overlay" style="background-image:url('C:/xampp/htdocs/Php/TIpymovies/tipymovies/public/images/demo/backgrounds/03.png');"> 
@@ -73,9 +73,9 @@
   <div class="one_half"><img class="inspace-10 borderedbox" src="C:/xampp/htdocs/Php/TIpymovies/tipymovies/public/images/demo/imgl.png" alt=""></div>
 </div>
 <!-- JAVASCRIPTS -->
-<script src="C:/xampp/htdocs/Php/TIpymovies/tipymovies/resources/js/scripts/jquery.min.js"></script>
-<script src="C:/xampp/htdocs/Php/TIpymovies/tipymovies/resources/js/scripts/jquery.backtotop.js"></script>
-<script src="C:/xampp/htdocs/Php/TIpymovies/tipymovies/resources/js/scripts/jquery.mobilemenu.js"></script>
+<script src="../resources/js/scripts/jquery.min.js"></script>
+<script src="../resources/js/scripts/jquery.backtotop.js"></script>
+<script src="../resources/js/scripts/jquery.mobilemenu.js"></script>
 </body>
 </html>
 <!-- @endsection -->
