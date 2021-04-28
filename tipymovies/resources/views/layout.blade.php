@@ -4,7 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>Tipy Movies</title>
-        <link href="../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
+
+      <link href="{{asset('css/layout.css')}}" rel="stylesheet" type="text/css" media="all">
+        <!-- -->
         <div class="bgded overlay" style="background-image:url('images/demo/backgrounds/03.png');"> 
     </head>
     <body>
@@ -18,6 +20,7 @@
             <li><a href="#">Iniciar Sesion</a></li>
             <li><a href="{{ route('register') }}">Registrarse</a></li>
             </ul>
+
         </div>
         <div class="fl_right">
             <ul class="nospace">
