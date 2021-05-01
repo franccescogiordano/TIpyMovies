@@ -62,7 +62,21 @@ File: Layout CSS
 
 .sectiontitle{display:block; max-width:55%; margin:0 auto 80px; text-align:center;}
 .sectiontitle *{margin:0;}
+.card-body {  margin: auto;
+  width: 50%;
+position: relative;
+  padding: 10px;
 
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; 
+     word-wrap: break-word;
+    border: 1px solid rgba(0, 0, 0, .05);
+    border-radius: .375rem;
+    background-color: #E6E6E6;
+     background-clip: border-box; 
+     opacity: 0.96; }
 .cta{}
 .cta article{display:block; position:relative; padding:0 0 0 95px; line-height:normal;}
 .cta article *{margin:0; padding:0;}

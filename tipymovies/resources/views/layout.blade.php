@@ -7,7 +7,7 @@
 
       <link href="{{asset('css/layout.css')}}" rel="stylesheet" type="text/css" media="all">
         <!-- -->
-        <div class="bgded overlay" style="background-image:url('images/demo/backgrounds/03.png');"> 
+        <div class="bgded overlay" style="background-image:url('images/demo/backgrounds/06.jpg');"> 
     </head>
     <body>
         <div class="wrapper row0">
