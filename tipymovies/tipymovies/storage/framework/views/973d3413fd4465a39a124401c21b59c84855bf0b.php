@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>Tipy Movies</title>
 
-      <link href="{{asset('css/layout.css')}}" rel="stylesheet" type="text/css" media="all">
+      <link href="<?php echo e(asset('css/layout.css')); ?>" rel="stylesheet" type="text/css" media="all">
         <!-- -->
         <div class="bgded overlay" style="background-image:url('images/demo/backgrounds/03.png');"> 
     </head>
@@ -18,7 +18,7 @@
             <li><a href="#">Acerca de</a></li>
             <li><a href="#">Contacto</a></li>
             <li><a href="#">Iniciar Sesion</a></li>
-            <li><a href="{{ route('register') }}">Registrarse</a></li>
+            <li><a href="<?php echo e(route('register')); ?>">Registrarse</a></li>
             </ul>
 
         </div>
@@ -29,11 +29,11 @@
         </div>
         </div>
         </div>
-        @if (url()->current() != route('register'))
+        <?php if(url()->current() != route('register')): ?>
         <div id="main-navbar" class="wrapper row1">
             <header id="header" class="hoc clear">
             <div id="logo" class="fl_left">
-                <h1><a href="index.html">TIPY MOVIES</a></h1>
+                <h1><a href="index.html"><?php echo e(url()->current()); ?></a></h1>
             </div>
             <nav id="mainav" class="fl_right">
                 <ul class="clear">
@@ -46,9 +46,9 @@
             </nav>
             </header>
         </div>
-        @endif
+        <?php endif; ?>
         <div>
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
     </body>
 </html>
@@ -56,3 +56,4 @@
 <script>
 
 </script>
+<?php /**PATH C:\xampp\htdocs\TipyMovies\TIpyMovies\tipymovies\resources\views/layout.blade.php ENDPATH**/ ?>
