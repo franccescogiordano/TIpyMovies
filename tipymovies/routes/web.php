@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 
 */
 
-Route::view('/', 'home')->name('home');
-Route::view('registro', 'auth.register')->name('register');
+/*Route::view('/', 'home')->name('home');
+Route::view('registro', 'auth.register')->name('register');*/
 
 
 
