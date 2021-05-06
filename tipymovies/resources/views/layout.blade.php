@@ -7,7 +7,7 @@
 
       <link href="{{asset('css/layout.css')}}" rel="stylesheet" type="text/css" media="all">
         <!-- -->
-        <div class="bgded overlay" style="background-image:url('images/demo/backgrounds/06.jpg');"> 
+        <div class="bgded overlay" style="background-image:url('images/demo/backgrounds/06.jpg');">
     </head>
     <body>
         <div class="wrapper row0">
@@ -51,7 +51,8 @@
             <nav id="mainav" class="fl_right">
                 <ul class="clear">
                 <li class="active"><a href="index.html">Inicio</a></li>
-                <li><a href="index.html">Peliculas</a></li>
+                <li><a href="{{ route('listarPeliculas') }}">Peliculas</a>
+                </li>
                 <li><a href="index.html">Series</a></li>
                 <li><a href="index.html">Trivia</a></li>
                 <li><input type="search" name="buscar"></a></li>
