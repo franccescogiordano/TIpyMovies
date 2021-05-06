@@ -5,16 +5,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>Tipy Movies</title>
 
+        <script type="text/javascript" src="{{url('assets/js/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{url('assets/js/tether.min.js')}}"></script>
+        <script type="text/javascript" src="{{url('assets/js/bootstrap.min.js')}}"></script>
+
+        <link href="{{asset('css/Peliculas.css')}}" rel="stylesheet" type="text/css" media="all">
       <link href="{{asset('css/layout.css')}}" rel="stylesheet" type="text/css" media="all">
+      <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all">
+
+
         <!-- -->
         <div class="bgded overlay" style="background-image:url('images/demo/backgrounds/06.jpg');">
     </head>
-    <body>
+    <body class="framework bodyLayout">
         <div class="wrapper row0">
         <div id="topbar" class="hoc clear">
         <div class="fl_left">
             <ul class="nospace">
-            <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+            <li><a href="{{ route('home') }}"><i class="fa fa-lg fa-home"></i></a></li>
             <li><a href="#">Acerca de</a></li>
             <li><a href="#">Contacto</a></li>
             </ul>
@@ -46,11 +54,11 @@
         <div id="main-navbar" class="wrapper row1">
             <header id="header" class="hoc clear">
             <div id="logo" class="fl_left">
-                <h1><a href="index.html">TIPY MOVIES</a></h1>
+                <h1 class="heading"><a href="{{ route('home')}}">TIPY MOVIES</a></h1>
             </div>
             <nav id="mainav" class="fl_right">
                 <ul class="clear">
-                <li class="active"><a href="index.html">Inicio</a></li>
+                <li class="active"><a href="{{ route('home') }}">Inicio</a></li>
                 <li><a href="{{ route('listarPeliculas') }}">Peliculas</a>
                 </li>
                 <li><a href="index.html">Series</a></li>

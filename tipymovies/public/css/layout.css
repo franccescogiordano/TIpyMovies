@@ -70,12 +70,12 @@ position: relative;
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 0; 
+    min-width: 0;
      word-wrap: break-word;
     border: 1px solid rgba(0, 0, 0, .05);
     border-radius: .375rem;
     background-color: #E6E6E6;
-     background-clip: border-box; 
+     background-clip: border-box;
      opacity: 0.96; }
 .cta{}
 .cta article{display:block; position:relative; padding:0 0 0 95px; line-height:normal;}
@@ -239,7 +239,7 @@ td{border-width:0 1px;}
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
-body{color:#7F7F7F; background-color:#252525;}
+body, .bodyLayout{color:#7F7F7F; background-color:#252525;}
 a{color:#D01818;}
 a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey background */
 hr, .borderedbox{border-color:#D7D7D7;}
