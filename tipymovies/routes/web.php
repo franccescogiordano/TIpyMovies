@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,15 @@ Route::view('/', 'home')->name('home');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//agregado
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PeliculasController;
+
+Route::get('/user/{id}', [UserController::class, 'show']);
+
+Route::get('/Peliculas', [PeliculasController::class, 'getLista'])->name('listarPeliculas');
+
+//Route::get('glog/{post:slug}','BlogController@show')->name('blog.show');
+//Route::get('Peliculas','PeliculasController@getLista')->name('listarPeliculas');
