@@ -1,0 +1,14 @@
+#PosterContainer{
+    width: 300px;
+    height: 460px;
+
+    align-items: center;
+    padding-bottom: 10px;
+    align-content: center;
+}
+
+#Poster{
+    max-width: 300px;
+    max-height: 450px;
+    height: auto;
+}

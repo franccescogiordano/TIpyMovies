@@ -12,10 +12,31 @@
       <article>
         <div>
           <p class="heading">Listado de Peliculas</p>
-          @foreach($peliculas as $peli)
-          <img src='{{ $peli->getPoster() }}'><BR>
-          {{ $peli->getTitulo() }}
-          @endforeach
+
+            <div class="container">
+                <div class="row">
+                    @php
+                        $counter = 0;
+                    @endphp
+                    @foreach($peliculas as $peli)
+
+                        <div id="PosterContainer" class="col"><img id="Poster" src='{{ $peli->getPoster() }}' alt='{{ $peli->getTitulo() }}' ></div>
+
+                        @php
+                            $counter += 1;
+                        @endphp
+
+                        @if($counter === 3)
+                            <div class="w-100"></div>
+                            @php
+                                $counter = 0;
+                            @endphp
+                        @endif
+
+                    @endforeach
+
+                </div>
+            </div>
         </div>
         <footer>
           <ul class="nospace inline pushright">

@@ -19,7 +19,7 @@ Route::view('/', 'home')->name('home');
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); NO SABEMOS QUE HACE
 
 
 //agregado
@@ -30,5 +30,3 @@ Route::get('/user/{id}', [UserController::class, 'show']);
 
 Route::get('/Peliculas', [PeliculasController::class, 'getLista'])->name('listarPeliculas');
 
-//Route::get('glog/{post:slug}','BlogController@show')->name('blog.show');
-//Route::get('Peliculas','PeliculasController@getLista')->name('listarPeliculas');
