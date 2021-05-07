@@ -19,7 +19,7 @@ Route::view('/', 'home')->name('home');
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); NO SABEMOS QUE HACE
 
 
 //agregado
@@ -29,6 +29,5 @@ use App\Http\Controllers\PeliculasController;
 Route::get('/user/{id}', [UserController::class, 'show']);
 
 Route::get('/Peliculas', [PeliculasController::class, 'getLista'])->name('listarPeliculas');
+Route::view('/Peliculasxd', 'DetallePeliculas' )->name('DetallePeliculas');
 
-//Route::get('glog/{post:slug}','BlogController@show')->name('blog.show');
-//Route::get('Peliculas','PeliculasController@getLista')->name('listarPeliculas');

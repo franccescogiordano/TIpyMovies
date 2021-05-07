@@ -62,9 +62,27 @@ File: Layout CSS
 
 .sectiontitle{display:block; max-width:55%; margin:0 auto 80px; text-align:center;}
 .sectiontitle *{margin:0;}
+<<<<<<< HEAD
 .card-body {margin: auto; width: 30%; position: relative; padding: 0px; display: flex; flex-direction: row;
     		min-width: 0; word-wrap: break-word; border: 1px solid rgba(0, 0, 0, .05); border-radius: .375rem;
     		background-color: #E6E6E6; background-clip: border-box;}
+=======
+.card-body {  margin: auto;
+  width: 50%;
+position: relative;
+  padding: 10px;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+     word-wrap: break-word;
+    border: 1px solid rgba(0, 0, 0, .05);
+    border-radius: .375rem;
+    background-color: #E6E6E6;
+     background-clip: border-box;
+     opacity: 0.96; }
+>>>>>>> Develop
 .cta{}
 .cta article{display:block; position:relative; padding:0 0 0 95px; line-height:normal;}
 .cta article *{margin:0; padding:0;}
@@ -227,7 +245,7 @@ td{border-width:0 1px;}
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
-body{color:#7F7F7F; background-color:#252525;}
+body, .bodyLayout{color:#7F7F7F; background-color:#252525;}
 a{color:#D01818;}
 a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey background */
 hr, .borderedbox{border-color:#D7D7D7;}
