@@ -20,9 +20,12 @@
                     @endphp
                     @foreach($peliculas as $peli)
 
-                        <div id="PosterContainer" class="col"><img id="Poster" src='{{ $peli->getPoster() }}' alt='{{ $peli->getTitulo() }}' ></div>
+                        <a href="{{ route('DetallePeliculas') }}?titlepeli={{ $peli->getTitulo() }}"> 
+                          <div id="PosterContainer" class="col"><img id="Poster" src='{{ $peli->getPoster() }}' alt='{{ $peli->getTitulo() }}' ></div>
+                        </a>
 
                         @php
+                      
                             $counter += 1;
                         @endphp
 

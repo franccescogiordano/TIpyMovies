@@ -62,6 +62,11 @@ File: Layout CSS
 
 .sectiontitle{display:block; max-width:55%; margin:0 auto 80px; text-align:center;}
 .sectiontitle *{margin:0;}
+<<<<<<< HEAD
+.card-body {margin: auto; width: 30%; position: relative; padding: 0px; display: flex; flex-direction: row;
+    		min-width: 0; word-wrap: break-word; border: 1px solid rgba(0, 0, 0, .05); border-radius: .375rem;
+    		background-color: #E6E6E6; background-clip: border-box;}
+=======
 .card-body {  margin: auto;
   width: 50%;
 position: relative;
@@ -77,6 +82,7 @@ position: relative;
     background-color: #E6E6E6;
      background-clip: border-box;
      opacity: 0.96; }
+>>>>>>> Develop
 .cta{}
 .cta article{display:block; position:relative; padding:0 0 0 95px; line-height:normal;}
 .cta article *{margin:0; padding:0;}
@@ -248,8 +254,10 @@ input:focus, textarea:focus, *:required:focus{border-color:#D01818;}
 .overlay{color:#FFFFFF; background-color:inherit;}
 .overlay::after{color:inherit; background-color:rgba(0,0,0,.55); background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhJREFUeNpiYGBgePz//38GRhABAgABBgBFTAbfCBNE2AAAAABJRU5ErkJggg==");}
 
-.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#D01818; margin:10px; border-color:#D01818;}
-.btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
+.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#D01818; margin:10px; border-color:#D01818;border-radius: 6px;
+    border: 2px solid #D01818;}
+.btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;border-radius: 6px;
+    border: 2px solid #D01818;}
 
 
 /* Rows */
