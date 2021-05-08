@@ -59,17 +59,25 @@
             <nav id="mainav" class="fl_right">
                 <ul class="clear">
                 <li class="active"><a href="{{ route('home') }}">Inicio</a></li>
-                <li><a href="{{ route('listarPeliculas') }}">Peliculas</a>
+                <li><a href="{{ route('listarPeliculas.busqueda',['texto_busqueda' => 'Avengers']) }}">Peliculas</a>
                 </li>
                 <li><a href="index.html">Series</a></li>
                 <li><a href="index.html">Trivia</a></li>
-                <li><input type="search" name="buscar"></a></li>
+                    <li>
+                    <input type="search" name="texto_busqueda">
+
+                    </li>
+
                 </ul>
             </nav>
             </header>
         </div>
         @endif
         <div>
+                    <form action="{{ url('Peliculas') }}" method="POST">
+                        <input type="search" name="texto_busqueda">
+                        <button type="submit" name="botonBuscar">Buscar</button>
+                    </form>
             @yield('content')
         </div>
     </body>

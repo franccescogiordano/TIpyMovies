@@ -28,6 +28,9 @@ use App\Http\Controllers\PeliculasController;
 
 Route::get('/user/{id}', [UserController::class, 'show']);
 
-Route::get('/Peliculas', [PeliculasController::class, 'getLista'])->name('listarPeliculas');
+//Route::get('/Peliculas', [PeliculasController::class, 'getLista'])->name('listarPeliculas');
+Route::post('Peliculas', 'PeliculasController@getLista');
+
 Route::view('/Peliculasxd', 'DetallePeliculas' )->name('DetallePeliculas');
 
+Route::get('/Peliculas/{texto_busqueda}', [PeliculasController::class, 'getLista'])->name('listarPeliculas.busqueda');
