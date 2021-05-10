@@ -8,14 +8,13 @@ use GuzzleHttp\Client;
 
 class PeliculasController extends Controller
 {
-    public function getLista($texto_busqueda="pulp"){
+    public function getLista($texto_busqueda="pulp",$page=1){
         $texto_busqueda=urlencode($texto_busqueda);
 
         $client = new \GuzzleHttp\Client();
-
         $anio_busqueda="";
         $tipo_busqueda="";
-        $response = $client->get('http://www.omdbapi.com/',['query'=>['s'=>$texto_busqueda,'y'=>$anio_busqueda,'type'=>$tipo_busqueda,'apikey'=>'169e719d']]);
+        $response = $client->get('http://www.omdbapi.com/',['query'=>['s'=>$texto_busqueda,'y'=>$anio_busqueda,'type'=>$tipo_busqueda,'page'=>$page,'apikey'=>'169e719d']]);
 
         $json_response=json_decode($response->getBody(), true);
         $films=$json_response["Search"];
@@ -31,7 +30,9 @@ class PeliculasController extends Controller
         }
         //return $peliculas;
         return view('ListarPeliculas', [
-            'peliculas' => $peliculas
+            'peliculas' => $peliculas,
+            'page' => $page,
+            'texto_busqueda' => $texto_busqueda
         ]);
     }
 }

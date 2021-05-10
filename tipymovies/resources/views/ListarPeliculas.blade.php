@@ -41,15 +41,15 @@
                 </div>
             </div>
             <ul class="nospace inline pushright">
-                <li><a class="btn inverse" href="{{ route('listarPeliculas.busqueda',['texto_busqeda' => 'Garfield']) }}">Anterior</a></li>
-                <li><a class="btn" href="#">Siguiente</a></li>
+                <li><a class="btn inverse" href="{{ route('listarPeliculas.busqueda.page',['texto_busqueda' => $texto_busqueda, 'page' => $page-1]) }}">Anterior</a></li>
+                <li><a class="btn" href="{{ route('listarPeliculas.busqueda.page',['texto_busqueda' => $texto_busqueda, 'page' => $page+1]) }}">Siguiente</a></li>
           </ul>
         </div>
         <footer>
-          <ul class="nospace inline pushright">
+          <!--<ul class="nospace inline pushright">
             <li><a class="btn inverse" href="#">Boton</a></li>
             <li><a class="btn" href="#">Botoncito</a></li>
-          </ul>
+          </ul>-->
         </footer>
       </article>
     </div>
