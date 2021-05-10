@@ -9,7 +9,6 @@ use GuzzleHttp\Client;
 class PeliculasController extends Controller
 {
     public function getLista($texto_busqueda="pulp"){
-
         $texto_busqueda=urlencode($texto_busqueda);
 
         $client = new \GuzzleHttp\Client();
