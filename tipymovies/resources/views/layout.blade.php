@@ -74,11 +74,11 @@
         </div>
         @endif
         <div>
-            <!--<form action="{{ url('/Peliculas') }}" method="GET">
+            <form action="{{ url('/Peliculas') }}" method="GET">
                 @csrf
                 <input type="search" name="texto_busqueda">
                 <button type="submit" name="btnBuscar">Buscar</button>
-            </form>-->
+            </form>
 
             @yield('content')
         </div>

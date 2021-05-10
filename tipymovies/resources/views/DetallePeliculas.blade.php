@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt--8 pb-5">
+<div id="content" class="container mt--8 pb-5">
     <button onclick="loadClient()">load</button>
     <button onclick="execute()">execute</button>
 </div>
@@ -36,15 +36,22 @@
       })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
+                console.log("Response", response.body);
+                hndlr(response.body);
               },
               function(err) { console.error("Execute error", err); });
   }
 
-  
-
-
-  
+    function hndlr(response) {
+    //for (var i = 0; i < response.items.length; i++) {
+        var response = JSON.parse(response);
+        var item = response.items[0];
+        console.log(response);
+        console.log(item);
+        // in production code, item.htmlTitle should have the HTML entities escaped.
+        document.getElementById("content").innerHTML += "<br>" + item.link;
+    // }
+    }
 
   gapi.load("client");
 </script>
