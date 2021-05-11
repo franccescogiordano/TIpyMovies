@@ -72,12 +72,13 @@
             </nav>
             </header>
         </div>
+
         @endif
         <div>
-            <form action="{{ url('/Peliculas') }}" method="GET">
+            <form >
                 @csrf
-                <input type="search" name="texto_busqueda">
-                <button type="submit" name="btnBuscar">Buscar</button>
+                <input id="texto_busqueda" type="search" name="texto_busqueda">
+                <button type="button" onClick="cambiarurl()" name="btnBuscar">Buscar</button>
             </form>
 
             @yield('content')
@@ -86,5 +87,10 @@
 </html>
 
 <script>
+    function cambiarurl(){
+        console.log(document.getElementById('texto_busqueda').value);
+
+        window.location.href = "/Peliculas/"+document.getElementById('texto_busqueda').value;
+    }
 
 </script>
