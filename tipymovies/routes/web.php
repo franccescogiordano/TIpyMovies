@@ -32,7 +32,7 @@ Route::GET('/Peliculas', [PeliculasController::class, 'getLista2'])->name('lista
 
 //Route::GET('/Peliculas', 'App\Http\Controllers\PeliculasController@getLista');
 
-Route::view('/Peliculasxd', 'DetallePeliculas' )->name('DetallePeliculas');
+Route::GET('/Peliculasxd/{idchossen}/{titlepeli}', [PeliculasController::class, 'mostraruna'])->name('DetallePeliculas');
 
 Route::GET('/Peliculas/{texto_busqueda}', [PeliculasController::class, 'getLista'])->name('listarPeliculas.busqueda');
 
