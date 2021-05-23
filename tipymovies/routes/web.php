@@ -37,3 +37,5 @@ Route::view('/Peliculasxd', 'DetallePeliculas' )->name('DetallePeliculas');
 Route::GET('/Peliculas/{texto_busqueda}', [PeliculasController::class, 'getLista'])->name('listarPeliculas.busqueda');
 
 Route::GET('/Peliculas/{texto_busqueda}/{page}', [PeliculasController::class, 'getLista'])->name('listarPeliculas.busqueda.page');
+
+Route::GET('/lista', [PeliculasController::class,'getLista2'])->name('lista');
