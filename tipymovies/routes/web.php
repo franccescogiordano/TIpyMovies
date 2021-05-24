@@ -47,9 +47,11 @@ Route::GET('/users', function () {
     return UserResource::collection(User::all());
 });
 
-/*Route::GET('/user/{id}/{pass}', function ($id) {
-    return new UserResource(User::where('username',$id)->where('password',$pass))->firstOrFail());
-});*/
+Route::GET('/user/{id}/{pass}', function ($id) {
+    return new UserResource(User::where('username',$id)->where('password',$pass)->firstOrFail());
+});
+
+
 
   /*  Route::bind('user', function ($value) {
         return User::where('name', $value)->firstOrFail();
