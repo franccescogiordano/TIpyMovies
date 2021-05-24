@@ -39,6 +39,7 @@ Route::GET('/Peliculas/{texto_busqueda}', [PeliculasController::class, 'getLista
 
 Route::GET('/Peliculas/{texto_busqueda}/{page}', [PeliculasController::class, 'getLista'])->name('listarPeliculas.busqueda.page');
 
+
 /*Route::GET('/user/{id}', function ($id) {
     return new UserResource(User::findOrFail($id));
 });
@@ -54,3 +55,6 @@ Route::GET('/users', function () {
   /*  Route::bind('user', function ($value) {
         return User::where('name', $value)->firstOrFail();
     });*/
+
+Route::GET('/lista', [PeliculasController::class,'getLista2'])->name('lista');
+
