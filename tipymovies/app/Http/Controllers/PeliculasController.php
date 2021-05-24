@@ -39,6 +39,7 @@ class PeliculasController extends Controller
 
     public function getLista2(Request $request){
         $texto_busqueda = $request->input('texto_busqueda');
+        $android = $request->input("a");
         $page=1;
         $texto_busqueda=urlencode($texto_busqueda);
 
@@ -59,12 +60,18 @@ class PeliculasController extends Controller
             $peliculas[]=$pelicula;
             //$posters[]=$value['Poster'];
         }
-        //return $peliculas;
-        return view('ListarPeliculas', [
-            'peliculas' => $peliculas,
-            'page' => $page,
-            'texto_busqueda' => $texto_busqueda
-        ]);
+
+        if(isset($android)){
+            return $json_response;
+        }
+        else{
+            //return $peliculas;
+            return view('ListarPeliculas', [
+                'peliculas' => $peliculas,
+                'page' => $page,
+                'texto_busqueda' => $texto_busqueda
+            ]);
+        }
     }
 
 
