@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Http;
 
 */
 
-Route::view('/', 'home')->name('home');
+
 /*Route::view('registro', 'auth.register')->name('register');*/
 
 
@@ -28,7 +28,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PeliculasController;
 use App\Models\User;
 Route::get('/user/{id}', [UserController::class, 'show']);
-
+Route::view('/', 'home')->name('home');
 Route::GET('/Peliculas', [PeliculasController::class, 'getLista2'])->name('listarPeliculas');
 
 //Route::GET('/Peliculas', 'App\Http\Controllers\PeliculasController@getLista');

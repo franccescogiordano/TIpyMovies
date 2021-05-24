@@ -19,4 +19,4 @@ use App\Http\Controllers\UserController;
 });*/
 
 Route::resource('User','UserController');
-Route::POST('/user/login/', [UserController::class, 'login'])->name('login');
+Route::POST('/user/login/', [UserController::class, 'login'])->name('loginmovil');
