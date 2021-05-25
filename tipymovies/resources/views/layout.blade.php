@@ -56,31 +56,32 @@
 				<div id="logo" class="fl_left">
 					<h1 class="heading"><a href="{{ route('home')}}">TIPY MOVIES</a></h1>
 				</div>
-				<form >
-					<nav id="mainav" class="fl_right">
-						<ul class="clear">
-							<li class="active"><a href="{{ route('home') }}">Inicio</a></li>
-							<li><a href="{{ route('listarPeliculas.busqueda',['texto_busqueda' => 'pulp']) }}">Peliculas</a>
-							</li>
-							<li><a href="index.html">Series</a></li>
-							<li><a href="index.html">Trivia</a></li>
-							<li>
-								
-								@csrf
-								<input id="texto_busqueda" type="search" name="texto_busqueda">
-								<button type="submit" onClick="cambiarurl()" name="btnBuscar">Buscar</button>
-								
-							</li>
 
-						</ul>
-					</nav>
-				</form>
+                <nav id="mainav" class="fl_right">
+                    <ul class="clear">
+                        <li class="active"><a href="{{ route('home') }}">Inicio</a></li>
+                        <li><a href="{{ route('listarPeliculas.busqueda',['texto_busqueda' => 'pulp']) }}">Peliculas</a>
+                        </li>
+                        <li><a href="index.html">Series</a></li>
+                        <li><a href="index.html">Trivia</a></li>
+                        <li>
+                            <form>
+                                @csrf
+                                <input id="texto_busqueda" type="search" name="texto_busqueda">
+                                <button type="button" onClick="cambiarurl()" name="btnBuscar">Buscar</button>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="buscar">
+
+                </div>
 			</header>
 		</div>
 
 		@endif
 		<div>
-			
+
 
 			@yield('content')
 		</div>

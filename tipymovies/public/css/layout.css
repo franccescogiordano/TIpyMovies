@@ -178,10 +178,15 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 #mainav ul ul{visibility:hidden; opacity:0;}
 #mainav ul li:hover > ul{visibility:visible; opacity:1;}
 
-#mainav form{display:none; margin:0; padding:0;}
+#mainav form{ margin:0; padding:0px;}
+/*
 #mainav form select, #mainav form select option{display:block; cursor:pointer; outline:none;}
 #mainav form select{width:100%; padding:5px; border:none;}
-#mainav form select option{margin:5px; padding:0; border:none;}
+#mainav form select option{margin:5px; padding:0; border:none;}*/
+
+.buscar{
+    padding: 30px;
+}
 
 /* Breadcrumb */
 #breadcrumb{padding:120px 0 30px;}
