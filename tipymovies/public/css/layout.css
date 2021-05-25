@@ -404,3 +404,41 @@ table a, #comments a{background-color:inherit;}
 	.font-x2{font-size:1.4rem;}
 	.font-x3{font-size:1.6rem;}
 }
+.pito li{
+text-align: left;
+}
+
+#datospeli{
+padding-left:200px;
+}
+
+#content{
+padding-left: 200px;
+padding-bottom: 200px;
+}
+
+#linkpeli:visited {
+  color: white;
+}
+
+/* mouse over link */
+#linkpeli:hover {
+  background-color: gray;
+}
+
+/* selected link */
+#linkpeli:active {
+  color: blue;
+}
+ #linkpeli {
+  display: inline-block;
+background-color: #f44336;
+color: #FFFFFF;
+padding: 14px 25px;
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+margin-left: 20px;
+opacity: 0.9;
+border-radius: 43px;
+ }

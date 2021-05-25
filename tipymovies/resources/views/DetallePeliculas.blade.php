@@ -2,10 +2,11 @@
 
 @section('content')
 
-<div align="center" onload="loadClient()">
-	<img id="Poster" src='{{ $peliculas->getPoster() }}' alt='{{ $peliculas->getTitulo() }}' >
-	<div id="datospeli" onload="execute()">
-	<ul>	
+<div>
+	
+	<div id="datospeli">
+		<img id="Poster" src='{{ $peliculas->getPoster() }}' alt='{{ $peliculas->getTitulo() }}' >
+	<ul class="pito">	
 		<li>Titulo: {{$peliculas->getTitulo()}}</li>
 		<li>Duracion : {{$peliculas->getRuntime()}}</li>
 		<li>Clasificacion : {{$peliculas->getRated()}}</li>
@@ -15,11 +16,16 @@
 	</ul>
 	</div>
 </div>
-
+<div id="content">
+	
+<a href="" id="linkpeli" target="_blank">Ver Pelicula</a>
+</div>
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
-	 loadClient("datospeli");
-	 execute("datospeli");
+window.onload=loadClient;
+	 //loadClient("datospeli");
+	// sleep(500);
+	 //execute("datospeli");
   /**
    * Sample JavaScript code for search.cse.list
    * See instructions for running APIs Explorer code samples locally:
@@ -33,11 +39,16 @@
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
 
+  function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
   function loadClient() {
+  	
     gapi.client.setApiKey("AIzaSyByZD4zxHn5Z6VaC09o618n85H4AL-Kf_0");
     return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch/v1/rest")
-        .then(function() { console.log("GAPI client loaded for API"); },
+        .then(function() { execute(); console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
+
   }
   // Make sure the client is loaded before calling this method.
   function execute() {
@@ -61,7 +72,7 @@
         console.log(response);
         console.log(item);
         // in production code, item.htmlTitle should have the HTML entities escaped.
-        document.getElementById("content").innerHTML += "<br>" + item.link;
+        document.getElementById("linkpeli").href = item.link;
     // }
     }
 
