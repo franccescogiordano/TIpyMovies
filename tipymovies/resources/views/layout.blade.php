@@ -67,15 +67,12 @@
                         <li>
                             <form>
                                 @csrf
-                                <input id="texto_busqueda" type="search" name="texto_busqueda">
-                                <button type="button" onClick="cambiarurl()" name="btnBuscar">Buscar</button>
+                                <input class="form-control" id="texto_busqueda" type="search" name="texto_busqueda">
+                                <button class="btn btn-default" type="button" onClick="cambiarurl()" name="btnBuscar">Buscar</button>
                             </form>
                         </li>
                     </ul>
                 </nav>
-                <div class="buscar">
-
-                </div>
 			</header>
 		</div>
 
