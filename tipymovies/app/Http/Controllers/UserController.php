@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 namespace App\Http\Controllers;
 
@@ -18,5 +18,19 @@ class UserController extends Controller
         return view('user.profile', [
             'user' => User::findOrFail($id)
         ]);
+
+      /*   return view('user.profile', [
+            'user' => User::findOrFail($username,$password)
+        ]);*/
     }
+
+   /* public function index(){
+    	$p=User::all();
+    	return response()->json($p,200);
+    }
+      public function store(Request $request){
+    	$p=new User ($request->all());
+    	$p->save();
+    	return response()->json($p,200);
+    }*/
 }

@@ -1,13 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="content" class="container mt--8 pb-5">
-    <button onclick="loadClient()">load</button>
-    <button onclick="execute()">execute</button>
+
+<div align="center" onload="loadClient()">
+	<img id="Poster" src='{{ $peliculas->getPoster() }}' alt='{{ $peliculas->getTitulo() }}' >
+	<div id="datospeli" onload="execute()">
+	<ul>	
+		<li>Titulo: {{$peliculas->getTitulo()}}</li>
+		<li>Duracion : {{$peliculas->getRuntime()}}</li>
+		<li>Clasificacion : {{$peliculas->getRated()}}</li>
+		<li>Sinopsis: {{$peliculas->getPlot()}}</li>
+		<li>Genero: {{$peliculas->getGenero()}}</li>
+		<li>Actores: {{$peliculas->getActores()}}</li>
+	</ul>
+	</div>
 </div>
 
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
+	 loadClient("datospeli");
+	 execute("datospeli");
   /**
    * Sample JavaScript code for search.cse.list
    * See instructions for running APIs Explorer code samples locally:
@@ -29,7 +41,7 @@
   }
   // Make sure the client is loaded before calling this method.
   function execute() {
-    var idpeli = getParameterByName('titlepeli');
+    var idpeli = "<?php echo $peliculas->getTitulo() ?>";//getParameterByName('titlepeli');
     return gapi.client.search.cse.list({
       "cx": "4fbfe7043c59bf552",
       "exactTerms": idpeli
