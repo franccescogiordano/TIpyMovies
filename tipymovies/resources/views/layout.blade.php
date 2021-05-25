@@ -56,7 +56,8 @@
 				<div id="logo" class="fl_left">
 					<h1 class="heading"><a href="{{ route('home')}}">TIPY MOVIES</a></h1>
 				</div>
-				<form >
+				<form>
+					@csrf
 					<nav id="mainav" class="fl_right">
 						<ul class="clear">
 							<li class="active"><a href="{{ route('home') }}">Inicio</a></li>
@@ -66,9 +67,9 @@
 							<li><a href="index.html">Trivia</a></li>
 							<li>
 								
-								@csrf
+								
 								<input id="texto_busqueda" type="search" name="texto_busqueda">
-								<button type="submit" onClick="cambiarurl()" name="btnBuscar">Buscar</button>
+								<button type="submit" onclick="cambiarulr();" name="btnBuscar">Buscar</button>
 								
 							</li>
 
