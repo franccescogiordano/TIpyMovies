@@ -14,7 +14,8 @@
           <p class="heading">Sin resultados</p>
 
             <div class="container">
-            <img src="{{URL::asset('/images/pika.png')}}" height="200" width="200">
+            <img src="{{URL::asset('/images/pika.png')}}">
+            {!! Html::image('images/pika.png') !!}
             </div>
             <footer>
             <!--<ul class="nospace inline pushright">
