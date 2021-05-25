@@ -56,32 +56,29 @@
 				<div id="logo" class="fl_left">
 					<h1 class="heading"><a href="{{ route('home')}}">TIPY MOVIES</a></h1>
 				</div>
-				<form>
-					@csrf
-					<nav id="mainav" class="fl_right">
-						<ul class="clear">
-							<li class="active"><a href="{{ route('home') }}">Inicio</a></li>
-							<li><a href="{{ route('listarPeliculas.busqueda',['texto_busqueda' => 'pulp']) }}">Peliculas</a>
-							</li>
-							<li><a href="index.html">Series</a></li>
-							<li><a href="index.html">Trivia</a></li>
-							<li>
-								
-								
-								<input id="texto_busqueda" type="search" name="texto_busqueda">
-								<button type="submit" onclick="cambiarulr();" name="btnBuscar">Buscar</button>
-								
-							</li>
 
-						</ul>
-					</nav>
-				</form>
+                <nav id="mainav" class="fl_right">
+                    <ul class="clear">
+                        <li class="active"><a href="{{ route('home') }}">Inicio</a></li>
+                        <li><a href="{{ route('listarPeliculas.busqueda',['texto_busqueda' => 'pulp']) }}">Peliculas</a>
+                        </li>
+                        <li><a href="index.html">Series</a></li>
+                        <li><a href="index.html">Trivia</a></li>
+                        <li>
+                            <form>
+                                @csrf
+                                <input class="form-control" id="texto_busqueda" type="search" name="texto_busqueda">
+                                <button class="btn btn-default" type="button" onClick="cambiarurl()" name="btnBuscar">Buscar</button>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
 			</header>
 		</div>
 
 		@endif
 		<div>
-			
+
 
 			@yield('content')
 		</div>

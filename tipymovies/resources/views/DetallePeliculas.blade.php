@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
 
 <div>
-	
+
 	<div id="datospeli">
 		<img id="Poster" src='{{ $peliculas->getPoster() }}' alt='{{ $peliculas->getTitulo() }}' >
-	<ul class="pito">	
+	<ul class="pito">
 		<li>Titulo: {{$peliculas->getTitulo()}}</li>
 		<li>Duracion : {{$peliculas->getRuntime()}}</li>
 		<li>Clasificacion : {{$peliculas->getRated()}}</li>
@@ -17,7 +17,7 @@
 	</div>
 </div>
 <div id="content">
-	
+
 <a href="" id="linkpeli" target="_blank">Ver Pelicula</a>
 </div>
 <script src="https://apis.google.com/js/api.js"></script>
@@ -43,7 +43,7 @@ window.onload=loadClient;
   return new Promise(resolve => setTimeout(resolve, ms));
 }
   function loadClient() {
-  	
+
     gapi.client.setApiKey("AIzaSyByZD4zxHn5Z6VaC09o618n85H4AL-Kf_0");
     return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch/v1/rest")
         .then(function() { execute(); console.log("GAPI client loaded for API"); },

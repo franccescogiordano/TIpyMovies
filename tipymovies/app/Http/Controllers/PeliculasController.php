@@ -17,7 +17,9 @@ class PeliculasController extends Controller
         $tipo_busqueda="";
         $response = $client->get('http://www.omdbapi.com/',['query'=>['s'=>$texto_busqueda,'y'=>$anio_busqueda,'type'=>$tipo_busqueda,'page'=>$page,'apikey'=>'169e719d']]);
 
+
         $json_response=json_decode($response->getBody(), true);
+
         $films=$json_response["Search"];
         $peliculas=array();
         foreach ($films as $key => $value) {
@@ -48,7 +50,9 @@ class PeliculasController extends Controller
         $tipo_busqueda="";
         $response = $client->get('http://www.omdbapi.com/',['query'=>['s'=>$texto_busqueda,'y'=>$anio_busqueda,'type'=>$tipo_busqueda,'page'=>$page,'apikey'=>'169e719d']]);
 
+
         $json_response=json_decode($response->getBody(), true);
+
         $films=$json_response["Search"];
         $peliculas=array();
         foreach ($films as $key => $value) {
@@ -110,7 +114,7 @@ $pelicula = new Pelicula();
       		$pelicula->setPlot($films["Plot"]);
 
             //$posters[]=$value['Poster'];
-        
+
 
  return view('DetallePeliculas', [
             'titlepeli' => $pelicula->getTitulo(),
