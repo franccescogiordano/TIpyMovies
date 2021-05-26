@@ -21,7 +21,7 @@
                     @foreach($peliculas as $peli)
 
                         <a href="{{ route('DetallePeliculas',[ 'idchossen' => $peli->getid() , 'titlepeli' => $peli->getTitulo() ]) }}" >
-                          <div id="PosterContainer" class="col"><img id="Poster" src='{{ $peli->getPoster() }}' alt='{{ $peli->getTitulo() }}' ></div>
+                          <div class="col PosterContainer"><img id="Poster" src='{{ $peli->getPoster() }}' alt='{{ $peli->getTitulo() }}' ></div>
                         </a>
 
                         @php

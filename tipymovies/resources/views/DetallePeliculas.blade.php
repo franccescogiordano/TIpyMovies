@@ -1,12 +1,16 @@
 @extends('layout')
 
 @section('content')
-
 <div>
+	
+</div>
+<div class="container">
 
-	<div id="datospeli">
-		<img id="Poster" src='{{ $peliculas->getPoster() }}' alt='{{ $peliculas->getTitulo() }}' >
-	<ul class="pito">
+	<div class="d-flex justify-content-center">
+		<img class="img-fluid" id="Poster" src='{{ $peliculas->getPoster() }}' alt='{{ $peliculas->getTitulo() }}' >
+	
+	</div>
+	<ul >
 		<li>Titulo: {{$peliculas->getTitulo()}}</li>
 		<li>Duracion : {{$peliculas->getRuntime()}}</li>
 		<li>Clasificacion : {{$peliculas->getRated()}}</li>
@@ -14,11 +18,10 @@
 		<li>Genero: {{$peliculas->getGenero()}}</li>
 		<li>Actores: {{$peliculas->getActores()}}</li>
 	</ul>
-	</div>
-</div>
-<div id="content">
 
-<a href="" id="linkpeli" target="_blank">Ver Pelicula</a>
+<div class="d-flex justify-content-center">
+<a class="botoncito" href="" id="linkpeli" target="_blank">Ver Pelicula</a>
+</div>
 </div>
 <script src="https://apis.google.com/js/api.js"></script>
 <script>

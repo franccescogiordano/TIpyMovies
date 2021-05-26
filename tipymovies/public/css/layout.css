@@ -142,7 +142,10 @@ If you don't want it to fade all elements, you have to list the ones you want to
 Delete it completely to stop fading
 --------------------------------------------------------------------------------------------------------------- */
 *, *::before, *::after{transition:all .3s ease-in-out;}
-#mainav form *{transition:none !important;}
+#mainav form *{
+  transition:none !important;
+
+}
 
 
 /* ------------------------------------------------------------------------------------------------------------ */
@@ -409,41 +412,41 @@ table a, #comments a{background-color:inherit;}
 	.font-x2{font-size:1.4rem;}
 	.font-x3{font-size:1.6rem;}
 }
-.pito li{
-text-align: left;
+
+
+
+
+
+
+
+.botoncito{
+
+background-color: #f44336!important;
+color: #FFFFFF!important;
+padding: 14px 25px!important;
+text-align: center!important;
+text-decoration: none!important;
+font-size: 16px!important;
+opacity: 0.9!important;
+border-radius: 43px!important;
+
 }
 
-#datospeli{
-padding-left:200px;
-}
-
-#content{
-padding-left: 200px;
-padding-bottom: 200px;
-}
-
-#linkpeli:visited {
-  color: white;
+.botoncito:visited {
+  color: white!important;
 }
 
 /* mouse over link */
-#linkpeli:hover {
-  background-color: gray;
+.botoncito:hover {
+  background-color: gray!important;
 }
 
 /* selected link */
-#linkpeli:active {
-  color: blue;
+.botoncito:active {
+  color: blue!important;
 }
- #linkpeli {
-  display: inline-block;
-background-color: #f44336;
-color: #FFFFFF;
-padding: 14px 25px;
-text-align: center;
-text-decoration: none;
-font-size: 16px;
-margin-left: 20px;
-opacity: 0.9;
-border-radius: 43px;
- }
+
+.PosterContainer{
+margin: 10px!important;
+
+}
