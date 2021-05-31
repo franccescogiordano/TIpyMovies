@@ -2,13 +2,13 @@
 
 @section('content')
 <div>
-	
+
 </div>
 <div class="container">
 
 	<div class="d-flex justify-content-center">
 		<img class="img-fluid" id="Poster" src='{{ $peliculas->getPoster() }}' alt='{{ $peliculas->getTitulo() }}' >
-	
+
 	</div>
 	<ul >
 		<li>Titulo: {{$peliculas->getTitulo()}}</li>
@@ -21,6 +21,8 @@
 
 <div class="d-flex justify-content-center">
 <a class="botoncito" href="" id="linkpeli" target="_blank">Ver Pelicula</a>
+<a class="botoncito" href="" id="linkpeli" target="_blank">Jugar</a>
+<a class="botoncito" href="{{Route('Agregar.pregunta', ['titulo' => $peliculas->getTitulo(), 'id' => $peliculas->getId()])}}" id="linkpeli" target="_blank">Agregar pregunta</a>
 </div>
 </div>
 <script src="https://apis.google.com/js/api.js"></script>

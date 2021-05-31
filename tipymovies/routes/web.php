@@ -26,7 +26,9 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Resources\UserResource;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PeliculasController;
+use App\http\Controllers\PreguntasController;
 use App\Models\User;
+
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::view('/', 'home')->name('home');
 Route::GET('/Peliculas', [PeliculasController::class, 'getLista2'])->name('listarPeliculas');
@@ -60,3 +62,8 @@ Route::GET('/user/{id}/{pass}', function ($id) {
 
 Route::GET('/lista', [PeliculasController::class,'getLista2'])->name('lista');
 
+Route::GET('/AgregarPregunta/{titulo}/{id}', function($id,$titulo){
+    return view('AgregarPregunta', ['titulo' => $titulo, 'imdbID' => $id]);
+})->name('Agregar.pregunta');
+
+Route::POST('/AgregarPregunta', [PreguntasController::class,'Agregar'])->name('Agregar');

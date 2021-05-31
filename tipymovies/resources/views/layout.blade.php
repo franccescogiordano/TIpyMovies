@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>Tipy Movies</title>
 
-	
+
 
 	<link href="{{asset('css/Peliculas.css')}}" rel="stylesheet" type="text/css" media="all">
 	<link href="{{asset('css/layout.css')}}" rel="stylesheet" type="text/css" media="all">
@@ -13,7 +13,7 @@
 
 
 	<!-- -->
-	
+
 	</head>
 	<body class="framework bodyLayout">
 		<div class="bgded overlay">
@@ -53,11 +53,11 @@
 		<div id="main-navbar" class="wrapper row1">
 			<header id="header" class="hoc clear">
 				<div id="logo" class="fl_left">
-					
+
 				</div>
 
-				
-				
+
+
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 					<a class="nav-link" href="{{ route('home')}}">TIPY MOVIES</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,15 +70,16 @@
 							</li>
 							<li class="nav-item"><a class="nav-link" href="index.html">Series</a></li>
 							<li class="nav-item"><a  class="nav-link" href="index.html">Trivia</a></li>
-						</ul> 
+						</ul>
 
 
 						<form class="form-inline my-2 my-lg-0" >
 							@csrf
 							<input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" id="texto_busqueda" name="texto_busqueda">
 							<button class="btn btn-default my-2 my-sm-0" type="button" onClick="cambiarurl()" name="btnBuscar">Buscar</button>
-							
+
 						</form>
+
 
 								<!-- <li class="nav-item">
 								@csrf
@@ -94,17 +95,15 @@
 				</div>
 
 				@endif
-				<div>
-
-
-					@yield('content')
-				</div>
+			<div>
+				@yield('content')
 			</div>
-			</body>
-			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-			</html>
+		</div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
 
 			<script>
 				function cambiarurl(){
