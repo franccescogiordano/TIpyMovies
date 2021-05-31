@@ -62,11 +62,7 @@ File: Layout CSS
 
 .sectiontitle{display:block; max-width:55%; margin:0 auto 80px; text-align:center;}
 .sectiontitle *{margin:0;}
-<<<<<<< HEAD
-.card-body {margin: auto; width: 30%; position: relative; padding: 0px; display: flex; flex-direction: row;
-    		min-width: 0; word-wrap: break-word; border: 1px solid rgba(0, 0, 0, .05); border-radius: .375rem;
-    		background-color: #E6E6E6; background-clip: border-box;}
-=======
+
 .card-body {  margin: auto;
   width: 50%;
 position: relative;
@@ -82,7 +78,7 @@ position: relative;
     background-color: #E6E6E6;
      background-clip: border-box;
      opacity: 0.96; }
->>>>>>> Develop
+
 .cta{}
 .cta article{display:block; position:relative; padding:0 0 0 95px; line-height:normal;}
 .cta article *{margin:0; padding:0;}
@@ -146,7 +142,10 @@ If you don't want it to fade all elements, you have to list the ones you want to
 Delete it completely to stop fading
 --------------------------------------------------------------------------------------------------------------- */
 *, *::before, *::after{transition:all .3s ease-in-out;}
-#mainav form *{transition:none !important;}
+#mainav form *{
+  transition:none !important;
+
+}
 
 
 /* ------------------------------------------------------------------------------------------------------------ */
@@ -182,10 +181,15 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 #mainav ul ul{visibility:hidden; opacity:0;}
 #mainav ul li:hover > ul{visibility:visible; opacity:1;}
 
-#mainav form{display:none; margin:0; padding:0;}
+#mainav form{ margin:0; padding:0px;}
+/*
 #mainav form select, #mainav form select option{display:block; cursor:pointer; outline:none;}
 #mainav form select{width:100%; padding:5px; border:none;}
-#mainav form select option{margin:5px; padding:0; border:none;}
+#mainav form select option{margin:5px; padding:0; border:none;}*/
+
+.buscar{
+    padding: 30px;
+}
 
 /* Breadcrumb */
 #breadcrumb{padding:120px 0 30px;}
@@ -407,4 +411,42 @@ table a, #comments a{background-color:inherit;}
 
 	.font-x2{font-size:1.4rem;}
 	.font-x3{font-size:1.6rem;}
+}
+
+
+
+
+
+
+
+.botoncito{
+
+background-color: #f44336!important;
+color: #FFFFFF!important;
+padding: 14px 25px!important;
+text-align: center!important;
+text-decoration: none!important;
+font-size: 16px!important;
+opacity: 0.9!important;
+border-radius: 43px!important;
+
+}
+
+.botoncito:visited {
+  color: white!important;
+}
+
+/* mouse over link */
+.botoncito:hover {
+  background-color: gray!important;
+}
+
+/* selected link */
+.botoncito:active {
+  color: blue!important;
+}
+
+.PosterContainer{
+margin: 10px!important;
+
 }

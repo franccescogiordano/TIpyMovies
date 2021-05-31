@@ -20,12 +20,12 @@
                     @endphp
                     @foreach($peliculas as $peli)
 
-                        <a href="{{ route('DetallePeliculas') }}?titlepeli={{ $peli->getTitulo() }}"> 
-                          <div id="PosterContainer" class="col"><img id="Poster" src='{{ $peli->getPoster() }}' alt='{{ $peli->getTitulo() }}' ></div>
+                        <a href="{{ route('DetallePeliculas',[ 'idchossen' => $peli->getid() , 'titlepeli' => $peli->getTitulo() ]) }}" >
+                          <div class="col PosterContainer"><img id="Poster" src='{{ $peli->getPoster() }}' alt='{{ $peli->getTitulo() }}' ></div>
                         </a>
 
                         @php
-                      
+
                             $counter += 1;
                         @endphp
 
@@ -40,12 +40,16 @@
 
                 </div>
             </div>
+            <ul class="nospace inline pushright">
+                <li><a class="btn inverse" href="{{ route('listarPeliculas.busqueda.page',['texto_busqueda' => $texto_busqueda, 'page' => $page-1]) }}">Anterior</a></li>
+                <li><a class="btn" href="{{ route('listarPeliculas.busqueda.page',['texto_busqueda' => $texto_busqueda, 'page' => $page+1]) }}">Siguiente</a></li>
+          </ul>
         </div>
         <footer>
-          <ul class="nospace inline pushright">
+          <!--<ul class="nospace inline pushright">
             <li><a class="btn inverse" href="#">Boton</a></li>
             <li><a class="btn" href="#">Botoncito</a></li>
-          </ul>
+          </ul>-->
         </footer>
       </article>
     </div>

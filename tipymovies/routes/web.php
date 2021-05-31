@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Http;
 
 */
 
-Route::view('/', 'home')->name('home');
+
 /*Route::view('registro', 'auth.register')->name('register');*/
 
 
@@ -23,11 +23,40 @@ Route::view('/', 'home')->name('home');
 
 
 //agregado
+use App\Http\Resources\UserResource;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PeliculasController;
-
+use App\Models\User;
 Route::get('/user/{id}', [UserController::class, 'show']);
+Route::view('/', 'home')->name('home');
+Route::GET('/Peliculas', [PeliculasController::class, 'getLista2'])->name('listarPeliculas');
 
-Route::get('/Peliculas', [PeliculasController::class, 'getLista'])->name('listarPeliculas');
-Route::view('/Peliculasxd', 'DetallePeliculas' )->name('DetallePeliculas');
+//Route::GET('/Peliculas', 'App\Http\Controllers\PeliculasController@getLista');
+
+Route::GET('/Peliculasxd/{idchossen}/{titlepeli}', [PeliculasController::class, 'mostraruna'])->name('DetallePeliculas');
+
+Route::GET('/Peliculas/{texto_busqueda}', [PeliculasController::class, 'getLista'])->name('listarPeliculas.busqueda');
+
+Route::GET('/Peliculas/{texto_busqueda}/{page}', [PeliculasController::class, 'getLista'])->name('listarPeliculas.busqueda.page');
+
+
+/*Route::GET('/user/{id}', function ($id) {
+    return new UserResource(User::findOrFail($id));
+});
+*/
+Route::GET('/users', function () {
+    return UserResource::collection(User::all());
+});
+
+Route::GET('/user/{id}/{pass}', function ($id) {
+    return new UserResource(User::where('username',$id)->where('password',$pass)->firstOrFail());
+});
+
+
+
+  /*  Route::bind('user', function ($value) {
+        return User::where('name', $value)->firstOrFail();
+    });*/
+
+Route::GET('/lista', [PeliculasController::class,'getLista2'])->name('lista');
 
