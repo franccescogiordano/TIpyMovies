@@ -62,8 +62,14 @@ Route::GET('/user/{id}/{pass}', function ($id) {
 
 Route::GET('/lista', [PeliculasController::class,'getLista2'])->name('lista');
 
-Route::GET('/AgregarPregunta/{titulo}/{id}', function($id,$titulo){
+Route::GET('/AgregarPregunta/{imdbID}/{titulo}', function($id,$titulo){
     return view('AgregarPregunta', ['titulo' => $titulo, 'imdbID' => $id]);
 })->name('Agregar.pregunta');
+
+Route::GET('/MiniJuego1/{imdbID}/{titulo}', function($id,$titulo){
+    return view('AgregarPregunta', ['titulo' => $titulo, 'imdbID' => $id]);
+})->name('MiniJuego1.Jugar');
+
+Route::GET('/Minijuego1/{imdbID}/{titulo}',[PreguntasController::class,'getCuestionario'])->name('MiniJuego1');
 
 Route::POST('/AgregarPregunta', [PreguntasController::class,'Agregar'])->name('Agregar');

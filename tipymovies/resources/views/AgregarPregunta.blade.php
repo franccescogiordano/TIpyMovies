@@ -22,7 +22,7 @@
                             <input class="form-control mr-sm-2" type="text" placeholder="Respuesta incorrecta" aria-label="Search" id="respuesta_incorrecta2" name="respuestaI2">
                             <input class="form-control mr-sm-2" type="text" placeholder="Respuesta incorrecta" aria-label="Search" id="respuesta_incorrecta3" name="respuestaI3">
                             <input class="form-control mr-sm-2" type="text" name="imdbID" value="{{$imdbID}}" style="display: none;">
-
+                            <input class="form-control mr-sm-2" type="text" name="titulo" value="{{$titulo}}" style="display: none;">
 							<button class="btn btn-default my-2 my-sm-0" type="submit" name="btnBuscar">Agregar</button>
 
 						</form>

@@ -16,9 +16,24 @@ class PreguntasController extends Controller
         $pre->respuestaI2 = $request->input('respuestaI2');
         $pre->respuestaI3 = $request->input('respuestaI3');
         $pre->imdbID = $request->input('imdbID');
-        $pre->validada=0;
+        $titulo = $request->input('titulo');
+        $pre->validada=1;
 
         $pre->save();
-        return "ok";
+        return redirect()->Route('Agregar.pregunta', ['titulo' => $titulo, 'imdbID' => $pre->imdbID]);
+    }
+
+    public function getCuestionario($imdbID,$titulo){
+        $imdbID = urldecode($imdbID);
+        $titulo = urldecode($titulo);
+        $pre = Pregunta::where('imdbID',$imdbID)->get();
+        $random = $pre->random(10);
+        return view('MiniJuego1', [
+            'preguntas' => $random
+        ]);
+    }
+
+    public function puntuar(){
+
     }
 }
