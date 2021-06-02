@@ -39,20 +39,25 @@
             var pre = {!! json_encode($preguntas) !!};
             function next(respuesta){
                 numPre++;
-                console.log(pre[0]);
-                if(respuesta == 1){
-                    alert("respuesta correcta " + pre[0]['respuestaC']);
+                if(numPre<10){
+                    console.log(pre[0]);
+                    if(respuesta == 1){
+                        alert("respuesta correcta " + pre[0]['respuestaC']);
+                    }
+                    var p = document.getElementById("pregunta");
+                    p.innerHTML = pre[numPre]['pregunta'];
+                    var r1 = document.getElementById("res1");
+                    r1.firstChild.data = pre[numPre]['respuestaC'];
+                    var r2 = document.getElementById("res2");
+                    r2.firstChild.data = pre[numPre]['respuestaI1'];
+                    var r3 = document.getElementById("res3");
+                    r3.firstChild.data = pre[numPre]['respuestaI2'];
+                    var r4 = document.getElementById("res4");
+                    r4.firstChild.data = pre[numPre]['respuestaI3'];
                 }
-                var p = document.getElementById("pregunta");
-                p.innerHTML = pre[numPre]['pregunta'];
-                var r1 = document.getElementById("res1");
-                r1.firstChild.data = pre[numPre]['respuestaC'];
-                var r2 = document.getElementById("res1");
-                r2.firstChild.data = pre[numPre]['respuestaI1'];
-                var r3 = document.getElementById("res1");
-                r3.firstChild.data = pre[numPre]['respuestaI2'];
-                var r4 = document.getElementById("res1");
-                r4.firstChild.data = pre[numPre]['respuestaI3'];
+                else{
+
+                }
             }
         </script>
         <script src="../resources/js/scripts/jquery.min.js"></script>

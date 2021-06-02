@@ -73,3 +73,5 @@ Route::GET('/MiniJuego1/{imdbID}/{titulo}', function($id,$titulo){
 Route::GET('/Minijuego1/{imdbID}/{titulo}',[PreguntasController::class,'getCuestionario'])->name('MiniJuego1');
 
 Route::POST('/AgregarPregunta', [PreguntasController::class,'Agregar'])->name('Agregar');
+
+Route::POST('/MiniJuego1/Puntuacion/{imdbID}/{titulo}',[PreguntasController::class,'Puntuacion'])->name('Puntuar');
