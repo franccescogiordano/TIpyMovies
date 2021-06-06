@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6, .heading{font-family:Georgia, "Times New Roman", Times, 
 --------------------------------------------------------------------------------------------------------------- */
 form, fieldset, legend{margin:0; padding:0; border:none;}
 legend{display:none;}
-label, textarea, select, button{display:block; resize:none; outline:none; color:black; font-size:inherit; font-family:inherit; vertical-align:middle;}
+label, textarea, select, button{display:block; resize:none; outline:none; color:white; font-size:inherit; font-family:inherit; vertical-align:middle;}
 label{margin-bottom:5px;}
 :required, :invalid{outline:none; box-shadow:none; margin: 0px 5px}
 

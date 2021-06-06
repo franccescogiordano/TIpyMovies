@@ -38,6 +38,7 @@ class PreguntasController extends Controller
     public function puntuar(Request $request){
         $correctas = $request->input('correctas');
         $puntos = $request->input('puntos');
-        return $puntos." ".$correctas;
+        $iduser = $request->input('iduser');
+        return $puntos." ".$correctas." ".$iduser;
     }
 }

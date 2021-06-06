@@ -26,11 +26,14 @@
                             </form>
                             <form id="formAceptar" method="POST" action="{{ route('Puntuar',['imdbID' => $imdbID, 'titulo' => $titulo]) }}" style="display:none;">
                                 @csrf
-                                <label id="correctasLabel" >Correctas:</label>
-                                <label id="puntosLabel" >Puntos:</label>
+                                @auth
+                                <p><label id="correctasLabel" >Correctas:</label>
+                                <label id="puntosLabel" >Puntos:</label></p>
                                 <input style="display:none;" type="text" value="co" id="correctasInput" name="correctas">
                                 <input style="display:none;" type="text" value="pu" id="puntosInput" name="puntos">
+                                <input style="display:none;" type="text" value="{{ Auth::user()->id }}" id="userInput" name="iduser">
                                 <button class="btn btn-default" type="submit" id="res4" name="aceptar">Aceptar</button>
+                                @endauth
                             </form>
                         </div>
                     </div>
