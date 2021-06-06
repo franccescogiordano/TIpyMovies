@@ -29,13 +29,15 @@ class PreguntasController extends Controller
         $pre = Pregunta::where('imdbID',$imdbID)->get();
         $random = $pre->random(10);
         return view('MiniJuego1', [
-            'preguntas' => $random
+            'preguntas' => $random,
+            'imdbID' => $imdbID,
+            'titulo' => $titulo
         ]);
     }
 
     public function puntuar(Request $request){
-        $correctas = $request->input($correctas);
-        $puntos = $request->input($puntos);
-        return $puntos+" "+$correctas;
+        $correctas = $request->input('correctas');
+        $puntos = $request->input('puntos');
+        return $puntos." ".$correctas;
     }
 }

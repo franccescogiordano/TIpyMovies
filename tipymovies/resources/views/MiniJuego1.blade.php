@@ -24,7 +24,7 @@
                                 <button class="btn btn-default" type="button" onClick="javascript:next(3);" value="" id="res3" name="res3">.</button>
                                 <button class="btn btn-default" type="button" onClick="javascript:next(4);" value="" id="res4" name="res4">.</button>
                             </form>
-                            <form id="formAceptar" method="POST" action="{{ route('puntuar') }}" style="display:none;">
+                            <form id="formAceptar" method="POST" action="{{ route('Puntuar',['imdbID' => $imdbID, 'titulo' => $titulo]) }}" style="display:none;">
                                 @csrf
                                 <label id="correctasLabel" >Correctas:</label>
                                 <label id="puntosLabel" >Puntos:</label>
