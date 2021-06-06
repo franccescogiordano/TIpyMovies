@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pregunta;
+use App\Models\Score;
 use Illuminate\Http\Request;
 
 class PreguntasController extends Controller
@@ -28,6 +29,9 @@ class PreguntasController extends Controller
         $titulo = urldecode($titulo);
         $pre = Pregunta::where('imdbID',$imdbID)->get();
         $random = $pre->random(10);
+
+        //get puntos para saber si es nuevo record
+
         return view('MiniJuego1', [
             'preguntas' => $random,
             'imdbID' => $imdbID,
@@ -35,10 +39,27 @@ class PreguntasController extends Controller
         ]);
     }
 
-    public function puntuar(Request $request){
+    public function puntuar(Request $request,$imdbID){
         $correctas = $request->input('correctas');
         $puntos = $request->input('puntos');
         $iduser = $request->input('iduser');
-        return $puntos." ".$correctas." ".$iduser;
+        //$imdbID = $request->input('imdbID');
+        $imdbID = urlencode($imdbID);
+        $score = new Score;
+        $score = Score::where('user_id',$iduser)->where('imdbID',$imdbID)->get();
+        if($score->empty()){
+            $score = new Score;
+            $score->puntos = $puntos;
+            $score->user_id = $iduser;
+            $score->imdbID = $imdbID;
+            $score->save();
+        }
+        else{
+            if($score->puntos > $puntos){
+                $score->puntos = $puntos;
+                $score->save();
+            }
+        }
+        return "Ok";
     }
 }
