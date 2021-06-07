@@ -21,7 +21,7 @@
 			<div id="topbar" class="hoc clear">
 				<div class="fl_left">
 					<ul class="nospace">
-						<li><a href="{{ route('home') }}"><i class="fa fa-lg fa-home"></i></a></li>
+						<li><a href="{{ route('home') }}"> <img src="{{asset('images/house.png')}}"><i></i></a></li>
 						<li><a href="#">Acerca de</a></li>
 						<li><a href="#">Contacto</a></li>
 					</ul>
@@ -68,7 +68,7 @@
 							<li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Inicio</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('listarPeliculas.busqueda',['texto_busqueda' => 'pulp']) }}">Peliculas</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="index.html">Series</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('listarSeries.busqueda',['texto_busqueda' => 'lost']) }}">Series</a></li>
 							<li class="nav-item"><a  class="nav-link" href="index.html">Trivia</a></li>
 						</ul>
 
@@ -107,9 +107,16 @@
 
 			<script>
 				function cambiarurl(){
+					var pathname = window.location.pathname
+					if(pathname.includes('Series')){
+					console.log(document.getElementById('texto_busqueda').value);
+
+					window.location.href = "/Series/"+document.getElementById('texto_busqueda').value;
+				} else {
 					console.log(document.getElementById('texto_busqueda').value);
 
 					window.location.href = "/Peliculas/"+document.getElementById('texto_busqueda').value;
+					}
 				}
 				$(document).keyup(function (e) {
 					if ($("#texto_busqueda").val()!="" && (e.keyCode === 13)) {
