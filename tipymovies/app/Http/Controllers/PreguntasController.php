@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pregunta;
+use App\Models\Pelicula;
 use App\Models\Score;
 use Illuminate\Http\Request;
 
@@ -38,6 +39,28 @@ class PreguntasController extends Controller
             'titulo' => $titulo
         ]);
     }
+    public function getCuestionario2(){
+        $pre = Pregunta::get()->random(10);
+        $pelicula = new Pelicula;
+        $peliculas=array();
+        $client = new \GuzzleHttp\Client();
+
+        for($p =0; $p < 10; $p++){
+            $response = $client->get('http://www.omdbapi.com/',['i' => $pre->imdbID,'apikey'=>'169e719d']]);
+            $json_response=json_decode($response->getBody(), true);
+            $films=$json_response["Search"];
+            $pelicula->setId($films['imdbID']);
+            $pelicula->setTitulo($films['title']);
+            $pelicula->setPoster($films['poster']);
+            $peliculas[]=$pelicula;
+        }
+        //get puntos para saber si es nuevo record
+
+        return view('MiniJuego2', [
+            'preguntas' => $random,
+            'peliculas' => $peliculas
+        ]);
+    }
 
     public function puntuar(Request $request,$imdbID){
         $correctas = $request->input('correctas');
@@ -46,20 +69,21 @@ class PreguntasController extends Controller
         //$imdbID = $request->input('imdbID');
         $imdbID = urlencode($imdbID);
         $score = new Score;
-        $score = Score::where('user_id',$iduser)->where('imdbID',$imdbID)->get();
-        if($score->empty()){
+        $score = Score::where('user_id',$iduser)->where('imdbID',$imdbID)->get()->first();
+        if($score == null){
             $score = new Score;
             $score->puntos = $puntos;
             $score->user_id = $iduser;
             $score->imdbID = $imdbID;
             $score->save();
+            return "Nueva entrada";
         }
         else{
-            if($score->puntos > $puntos){
+            if($score->puntos < $puntos){
                 $score->puntos = $puntos;
                 $score->save();
             }
         }
-        return "Ok";
+        return "ok";
     }
 }
