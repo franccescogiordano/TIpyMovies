@@ -1,0 +1,33 @@
+.form-control{
+height: 25px;
+font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.agregar{
+  width: 25%;
+  height: 10%;
+  text-align: center;
+}
+.CPreguntas{
+    margin: auto; 
+}
+.agregar{
+    width: 15%;
+    height: 13%;
+}
+#correctas{
+    display: flex;
+}
+#combo{
+    display: flex;
+}
+#puntos{
+    display: flex;
+
+}
+#cabeza{
+    align-items: center;
+    margin-bottom: 15px;
+}
+.respuestas{
+    width: 20%;
+}
