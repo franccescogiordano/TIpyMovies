@@ -2,7 +2,7 @@
 
 @section('content')
 <div>
-	
+
 </div>
 <div class="container">
 
@@ -19,12 +19,14 @@
 		<li>Actores: {{$peliculas->getActores()}}</li>
 	</ul>
 
+
 	<div class="d-flex justify-content-center">
 		<a class="botoncito" href="" id="linkpeli" target="_blank">Ver Pelicula</a>
 		<a class="botoncito" href="" id="linkpelicuevana" target="_blank">Cuevana</a>
-	<!--	<a class="botoncito" href="" id="linkpeli" target="_blank">Ver Pelicula</a>
-		<a class="botoncito" href="" id="linkpeli" target="_blank">Ver Pelicula</a> -->
+		<a class="botoncito" href="{{Route('MiniJuego1', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()])}}" id="linkpeli">Jugar</a>
+		<a class="botoncito" href="{{Route('Agregar.pregunta', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()])}}" id="linkpeli">Agregar pregunta</a>
 	</div>
+
 </div>
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
