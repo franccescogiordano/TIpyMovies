@@ -6,7 +6,7 @@
 	<title>Tipy Movies</title>
 
 
-
+	<link rel="stylesheet" href="\css\preguntas.css">
 	<link href="{{asset('css/Peliculas.css')}}" rel="stylesheet" type="text/css" media="all">
 	<link href="{{asset('css/layout.css')}}" rel="stylesheet" type="text/css" media="all">
 	<link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all">

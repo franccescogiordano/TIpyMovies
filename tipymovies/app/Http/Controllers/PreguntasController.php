@@ -46,7 +46,7 @@ class PreguntasController extends Controller
         $client = new \GuzzleHttp\Client();
 
         for($p =0; $p < 10; $p++){
-            $response = $client->get('http://www.omdbapi.com/',['i' => $pre->imdbID,'apikey'=>'169e719d']]);
+            $response = $client->get('http://www.omdbapi.com/',['i' => $pre->imdbID,'apikey'=>'169e719d']);
             $json_response=json_decode($response->getBody(), true);
             $films=$json_response["Search"];
             $pelicula->setId($films['imdbID']);
