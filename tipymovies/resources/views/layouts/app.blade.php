@@ -9,12 +9,12 @@
 
     <title>Iniciar Sesion - TIPY Movies</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Scripts 
+   <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <!-- Styles -->
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css" media="all">
-    <div class="bgded overlay" style="background-image:url('images/demo/backgrounds/06.jpg');"> 
+    <div class="bgded overlay" > 
 </head>
 <body>
     <div id="app">

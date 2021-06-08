@@ -26,7 +26,9 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Resources\UserResource;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PeliculasController;
+use App\http\Controllers\PreguntasController;
 use App\Models\User;
+
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::view('/', 'home')->name('home');
 Route::GET('/Peliculas', [PeliculasController::class, 'getLista2'])->name('listarPeliculas');
@@ -39,6 +41,11 @@ Route::GET('/Peliculas/{texto_busqueda}', [PeliculasController::class, 'getLista
 
 Route::GET('/Peliculas/{texto_busqueda}/{page}', [PeliculasController::class, 'getLista'])->name('listarPeliculas.busqueda.page');
 
+Route::GET('/Series/{idchossen}/{titlepeli}', [PeliculasController::class, 'mostrarunaSerie'])->name('DetalleSeries');
+
+Route::GET('/Series/{texto_busqueda}', [PeliculasController::class, 'getListaSeries'])->name('listarSeries.busqueda');
+
+Route::GET('/Series/{texto_busqueda}/{page}', [PeliculasController::class, 'getListaSeries'])->name('listarSeries.busqueda.page');
 
 /*Route::GET('/user/{id}', function ($id) {
     return new UserResource(User::findOrFail($id));
@@ -60,3 +67,20 @@ Route::GET('/user/{id}/{pass}', function ($id) {
 
 Route::GET('/lista', [PeliculasController::class,'getLista2'])->name('lista');
 
+Route::GET('/AgregarPregunta/{imdbID}/{titulo}', function($id,$titulo){
+    return view('AgregarPregunta', ['titulo' => $titulo, 'imdbID' => $id]);
+})->name('Agregar.pregunta');
+
+Route::GET('/MiniJuego1/{imdbID}/{titulo}', function($id,$titulo){
+    return view('AgregarPregunta', ['titulo' => $titulo, 'imdbID' => $id]);
+})->name('MiniJuego1.Jugar');
+
+Route::GET('/Minijuego1/{imdbID}/{titulo}',[PreguntasController::class,'getCuestionario'])->name('MiniJuego1');
+
+Route::GET('/Minijuego2',[PreguntasController::class,'getCuestionario2'])->name('MiniJuego2');
+
+Route::POST('/AgregarPregunta', [PreguntasController::class,'Agregar'])->name('Agregar');
+
+Route::POST('/MiniJuego1/Puntuacion/{imdbID}/{titulo}',[PreguntasController::class,'puntuar'])->name('Puntuar');
+
+//Route::POST('/',[PreguntasController::class,'puntuar'])->name('puntuar');
