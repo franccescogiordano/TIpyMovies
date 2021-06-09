@@ -8,7 +8,6 @@
 
 	<div class="d-flex justify-content-center">
 		<img class="img-fluid" id="Poster" src='{{ $peliculas->getPoster() }}' alt='{{ $peliculas->getTitulo() }}' >
-
 	</div>
 	<ul >
 		<li>Titulo: {{$peliculas->getTitulo()}}</li>
@@ -18,14 +17,24 @@
 		<li>Genero: {{$peliculas->getGenero()}}</li>
 		<li>Actores: {{$peliculas->getActores()}}</li>
 	</ul>
-
-
+    <div class="d-flex justify-content-center">
+        <p class="heading">Opciones para ver:</p>
+    </div>
 	<div class="d-flex justify-content-center">
 		<a class="botoncito" href="" id="linkpeli" target="_blank">Ver Pelicula</a>
 		<a class="botoncito" href="" id="linkpelicuevana" target="_blank">Cuevana</a>
-		<a class="botoncito" href="{{Route('MiniJuego1', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()])}}" id="linkpeli">Jugar</a>
-		<a class="botoncito" href="{{Route('Agregar.pregunta', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()])}}" id="linkpeli">Agregar pregunta</a>
-	</div>
+        <a class="botoncito" href="" id="linkpelignula" target="_blank">Gnula</a>
+        <a class="botoncito" href="" id="linkpelicuevanalive" target="_blank">Cuevana live</a>
+        <a class="botoncito" href="" id="linkpelicinecalidad" target="_blank">Cine Calidad</a>
+        <a class="botoncito" href="" id="linkpelipelisflix" target="_blank">Pelisflix</a>
+	</div><br>
+    <div class="d-flex justify-content-center">
+        <p class="heading">Trivia: </p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a class="botoncito" href="{{Route('MiniJuego1', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()])}}" id="linkpeli">Jugar</a>
+        <a class="botoncito" href="{{Route('Agregar.pregunta', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()])}}" id="linkpeli">Agregar pregunta</a>
+    </div>
 
 </div>
 <script src="https://apis.google.com/js/api.js"></script>
@@ -58,6 +67,10 @@
    		execute(); 
    		console.log("GAPI client loaded for API"); 
    		executecuevana();
+        executegnula();
+        executecuevanalive();
+        executecinecalidad();
+        executepelisflix();
    	},
    	function(err) { console.error("Error loading GAPI client for API", err); });
 
@@ -91,6 +104,62 @@ function executecuevana() {
             function(err) { console.error("Execute error", err); });
 }
 
+function executegnula() {
+    var idpeli = "<?php echo $peliculas->getTitulo() ?>";//getParameterByName('titlepeli');
+    return gapi.client.search.cse.list({
+        "cx": "439931c605d1d5492",
+        "exactTerms": idpeli
+    })
+    .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response.body);
+                hndlr(response.body,"gnula");
+            },
+            function(err) { console.error("Execute error", err); });
+}
+
+function executecuevanalive() {
+    var idpeli = "<?php echo $peliculas->getTitulo() ?>";//getParameterByName('titlepeli');
+    return gapi.client.search.cse.list({
+        "cx": "811695755b88a6ae1",
+        "exactTerms": idpeli
+    })
+    .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response.body);
+                hndlr(response.body,"cuevanalive");
+            },
+            function(err) { console.error("Execute error", err); });
+}
+
+function executecinecalidad() {
+    var idpeli = "<?php echo $peliculas->getTitulo() ?>";//getParameterByName('titlepeli');
+    return gapi.client.search.cse.list({
+        "cx": "37dcf2f17ad42f967",
+        "exactTerms": idpeli
+    })
+    .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response.body);
+                hndlr(response.body,"cinecalidad");
+            },
+            function(err) { console.error("Execute error", err); });
+}
+
+function executepelisflix() {
+    var idpeli = "<?php echo $peliculas->getTitulo() ?>";//getParameterByName('titlepeli');
+    return gapi.client.search.cse.list({
+        "cx": "84cf979474c1da608",
+        "exactTerms": idpeli
+    })
+    .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response.body);
+                hndlr(response.body,"pelisflix");
+            },
+            function(err) { console.error("Execute error", err); });
+}
+
 function hndlr(response, buscador) {
     //for (var i = 0; i < response.items.length; i++) {
     	var response = JSON.parse(response);
@@ -101,6 +170,14 @@ function hndlr(response, buscador) {
     		document.getElementById("linkpeli").href = item.link; 
     	else if (buscador=="cuevana")
     		document.getElementById("linkpelicuevana").href = item.link;   
+        else if (buscador=="gnula")
+            document.getElementById("linkpelignula").href = item.link;  
+        else if (buscador=="cuevanalive")
+            document.getElementById("linkpelicuevanalive").href = item.link; 
+        else if (buscador=="cinecalidad")
+            document.getElementById("linkpelicinecalidad").href = item.link;
+        else if (buscador=="pelisflix")
+            document.getElementById("linkpelipelisflix").href = item.link; 
         // in production code, item.htmlTitle should have the HTML entities escaped.
         
         
