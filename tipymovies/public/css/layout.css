@@ -7,9 +7,9 @@ Licence: Free to use under our free template licence terms
 Licence URI: https://www.os-templates.com/template-terms
 File: Layout CSS
 */
-
-@import url("font-awesome.min.css");
 @import url("framework.css");
+
+
 
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
@@ -450,3 +450,4 @@ border-radius: 43px!important;
 margin: 10px!important;
 
 }
+

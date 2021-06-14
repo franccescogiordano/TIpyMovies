@@ -41,6 +41,11 @@ Route::GET('/Peliculas/{texto_busqueda}', [PeliculasController::class, 'getLista
 
 Route::GET('/Peliculas/{texto_busqueda}/{page}', [PeliculasController::class, 'getLista'])->name('listarPeliculas.busqueda.page');
 
+Route::GET('/Series/{idchossen}/{titlepeli}', [PeliculasController::class, 'mostrarunaSerie'])->name('DetalleSeries');
+
+Route::GET('/Series/{texto_busqueda}', [PeliculasController::class, 'getListaSeries'])->name('listarSeries.busqueda');
+
+Route::GET('/Series/{texto_busqueda}/{page}', [PeliculasController::class, 'getListaSeries'])->name('listarSeries.busqueda.page');
 
 /*Route::GET('/user/{id}', function ($id) {
     return new UserResource(User::findOrFail($id));

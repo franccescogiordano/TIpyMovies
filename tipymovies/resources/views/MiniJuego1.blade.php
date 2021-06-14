@@ -5,24 +5,27 @@
 <html lang="">
     <head>
         <title>Show</title>
+        <link rel="stylesheet" href="\css\preguntas.css">
     </head>
     <body id="top" onload="next(0);">
         <div class="wrapper">
             <div id="pageintro" class="hoc clear">
                 <article>
                     <div>
+                        <div style="align-items: center;">
                         <p id="correctas">correctas</p>
                         <p id="combo">combo</p>
                         <p id="puntos">puntos</p>
+                        </div>
 
-                        <p id="pregunta" class="heading">{{$preguntas[0]->pregunta}}</p>
+                        <h2 id="pregunta" class="heading">{{$preguntas[0]->pregunta}}</h2>
 
                         <div class="container">
                             <form id="formPreguntas" >
-                                <button class="btn btn-default" type="button" onClick="javascript:next(1);" value="" id="res1" name="res1">.</button>
-                                <button class="btn btn-default" type="button" onClick="javascript:next(2);" value="" id="res2" name="res2">.</button>
-                                <button class="btn btn-default" type="button" onClick="javascript:next(3);" value="" id="res3" name="res3">.</button>
-                                <button class="btn btn-default" type="button" onClick="javascript:next(4);" value="" id="res4" name="res4">.</button>
+                                <button class="btn btn-default respuestas" type="button" onClick="javascript:next(1);" value="" id="res1" name="res1">.</button><br><br>
+                                <button class="btn btn-default respuestas" type="button" onClick="javascript:next(2);" value="" id="res2" name="res2">.</button><br><br>
+                                <button class="btn btn-default respuestas" type="button" onClick="javascript:next(3);" value="" id="res3" name="res3">.</button><br><br>
+                                <button class="btn btn-default respuestas" type="button" onClick="javascript:next(4);" value="" id="res4" name="res4">.</button><br><br>
                             </form>
                             <form id="formAceptar" method="POST" action="{{ route('Puntuar',['imdbID' => $imdbID, 'titulo' => $titulo]) }}" style="display:none;">
                                 @csrf
