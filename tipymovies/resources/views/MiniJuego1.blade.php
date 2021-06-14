@@ -116,6 +116,7 @@
                     r4.value = pre[numPre]['respuestaI3'];
                 }
                 else{
+
                     document.getElementById("formPreguntas").style.display = "none";
                     document.getElementById("formAceptar").style.display = "initial";
                     var p = document.getElementById("pregunta");

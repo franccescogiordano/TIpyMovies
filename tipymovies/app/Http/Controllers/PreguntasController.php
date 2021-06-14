@@ -22,7 +22,9 @@ class PreguntasController extends Controller
         $pre->validada=1;
 
         $pre->save();
-        return redirect()->Route('Agregar.pregunta', ['titulo' => $titulo, 'imdbID' => $pre->imdbID]);
+        $a = $request->input('a');
+        if(!isset($a))
+            return redirect()->Route('Agregar.pregunta', ['titulo' => $titulo, 'imdbID' => $pre->imdbID]);
     }
 
     public function getCuestionario($imdbID,$titulo){
@@ -46,7 +48,7 @@ class PreguntasController extends Controller
         $client = new \GuzzleHttp\Client();
 
         for($p =0; $p < 10; $p++){
-            $response = $client->get('http://www.omdbapi.com/',['i' => $pre->imdbID,'apikey'=>'169e719d']]);
+            $response = $client->get('http://www.omdbapi.com/',['i' => $pre->imdbID,'apikey'=>'169e719d']);
             $json_response=json_decode($response->getBody(), true);
             $films=$json_response["Search"];
             $pelicula->setId($films['imdbID']);
