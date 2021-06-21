@@ -33,7 +33,7 @@
 						<ul class="nospace">
 							@auth
 							<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesion</a></li>
-							<li><p> {{ Auth::user()->username }}</p></li>
+							<li> <a href="{{ route('UpdateUser') }}" > {{ Auth::user()->username }}</a></li>
 							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
 								@csrf
 							</form>

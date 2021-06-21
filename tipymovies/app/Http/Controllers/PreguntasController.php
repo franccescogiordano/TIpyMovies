@@ -86,4 +86,12 @@ class PreguntasController extends Controller
         }
         return "ok";
     }
+
+    public function topten(){
+	$posts = Score::orderBy('puntos', 'DESC')->get();
+    	 //$scores = Score::get();
+    	// $grouped = $scores->groupBy('user_id');
+    	$lo10masalto= $posts->take(10);
+    	return $lo10masalto;
+    }
 }

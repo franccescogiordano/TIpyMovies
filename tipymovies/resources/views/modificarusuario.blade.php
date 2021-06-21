@@ -15,42 +15,14 @@
 
             <div class="container">
                 <div class="row">
-                    @php
-                        $counter = 0;
-                    @endphp
-                    @foreach($peliculas as $peli)
-
-                        <a href="{{ route('DetallePeliculas',[ 'idchossen' => $peli->getid() , 'titlepeli' => $peli->getTitulo() ]) }}" >
-                          <div class="col PosterContainer"><img id="Poster" src='{{ $peli->getPoster() }}' alt='{{ $peli->getTitulo() }}' ></div>
-                        </a>
-
-                        @php
-
-                            $counter += 1;
-                        @endphp
-
-                        @if($counter === 3)
-                            <div class="w-100"></div>
-                            @php
-                                $counter = 0;
-                            @endphp
-                        @endif
-
-                    @endforeach
-
+                  <form method="POST" action="">
+                    <input type="text" name="nombre" value="{{ Auth::user()->name }}">
+                    <input type="text" name="email" value="{{ Auth::user()->email }}">
+                    <input type="password" name="password" value="{{ Auth::user()->password}}">
+                    <input type="text" name="usarname" value="{{ Auth::user()->username }}">
+                    <button type="submit">Modificar Datos</button>
+                  </form>
                 </div>
-            </div>
-            <ul class="nospace inline pushright">
-                <li><a class="btn inverse" href="{{ route('listarPeliculas.busqueda.page',['texto_busqueda' => $texto_busqueda, 'page' => $page-1]) }}">Anterior</a></li>
-                <li><a class="btn" href="{{ route('listarPeliculas.busqueda.page',['texto_busqueda' => $texto_busqueda, 'page' => $page+1]) }}">Siguiente</a></li>
-          </ul>
-        </div>
-        <footer>
-          <!--<ul class="nospace inline pushright">
-            <li><a class="btn inverse" href="#">Boton</a></li>
-            <li><a class="btn" href="#">Botoncito</a></li>
-          </ul>-->
-        </footer>
       </article>
     </div>
   </div>
