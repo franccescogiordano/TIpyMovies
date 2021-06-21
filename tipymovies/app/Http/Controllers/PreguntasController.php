@@ -123,6 +123,9 @@ class PreguntasController extends Controller
     	 //$scores = Score::get();
     	// $grouped = $scores->groupBy('user_id');
     	$lo10masalto= $posts->take(10);
-    	return $lo10masalto;
+    	return view('Ranking', [
+            'topten' => $lo10masalto
+        ]);
+
     }
 }
