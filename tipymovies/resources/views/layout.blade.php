@@ -70,6 +70,7 @@
 							</li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('listarSeries.busqueda',['texto_busqueda' => 'lost']) }}">Series</a></li>
 							<li class="nav-item"><a  class="nav-link" href="index.html">Trivia</a></li>
+                            <li class="nav-item"><a  class="nav-link" href="{{ route('ranking') }}">Ranking</a></li>
 						</ul>
 
 
