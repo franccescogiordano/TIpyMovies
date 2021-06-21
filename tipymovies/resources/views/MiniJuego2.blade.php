@@ -90,7 +90,7 @@
                         pPun.innerHTML = "Puntos: "+puntos;
                     }
                     else{
-                        combo=0;
+                        combo=1;
                         var pCom = document.getElementById("combo");
                         pCom.innerHTML = "Combo: "+combo;
                     }

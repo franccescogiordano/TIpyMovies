@@ -38,11 +38,13 @@ class UserController extends Controller
     public function login(Request $request)
     {
        // $this->validateLogin($request);
-    	$credentials = $request->only('email', 'password');
-         if (Auth::attempt($credentials)) {
-         	
-          //  $user = $this->guard()->user();
-       //     $user->generateToken();
+    	//$credentials = $request()->json()->only('email', 'password');
+        $credentials = request()->json()->all();
+        //var_dump($credentials);exit;
+        //if (Auth::attempt($credentials)) {
+        if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
+            //$user = $this->guard()->user();
+            //$user->generateToken();
 
             return response()->json([
                 'data' => Auth::user()->toArray(),
