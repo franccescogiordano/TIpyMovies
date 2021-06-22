@@ -120,12 +120,9 @@ class PreguntasController extends Controller
     }
 
     public function topten(){
-	$posts = Score::orderBy('puntos', 'DESC')->get();
+	$posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->orderBy('puntos', 'DESC')->get();
     $lo10masalto= $posts->take(10);
-    $lo10masalto->each(function($item){
-        $iduser = $item->user_id;
-        $users = User::where('id',$iduser)->get()->first();
-    });
+    $users=array();
     return view('Ranking', [
         'topten' => $lo10masalto
         ]);
