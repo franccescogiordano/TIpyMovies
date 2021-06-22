@@ -86,7 +86,6 @@ Route::GET('/Minijuego2',[PreguntasController::class,'getCuestionario2'])->name(
 Route::POST('/AgregarPregunta', [PreguntasController::class,'Agregar'])->name('Agregar');
 
 Route::POST('/MiniJuego1/Puntuacion/{imdbID}/{titulo}',[PreguntasController::class,'puntuar'])->name('Puntuar');
-Route::POST('/MiniJuego1/Puntuacion/{imdbID}/{titulo}',[PreguntasController::class,'puntuar2'])->name('Puntuar2');
 
 Route::GET('/Ranking', [PreguntasController::class,'getTopScore'])->name('ranking');
 //Route::POST('/',[PreguntasController::class,'puntuar'])->name('puntuar');

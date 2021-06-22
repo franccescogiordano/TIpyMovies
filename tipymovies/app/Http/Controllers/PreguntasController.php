@@ -85,11 +85,26 @@ class PreguntasController extends Controller
         ]);
     }
 
+
     public function puntuar(Request $request,$imdbID){
-        $correctas = $request->input('correctas');
-        $puntos = $request->input('puntos');
         $iduser = $request->input('iduser');
-        //$imdbID = $request->input('imdbID');
+        $r = $request->input('respuestas');
+        $p = $request->input('preguntas');
+        $combo = 0;
+        $puntos = 0;
+        $correctas = 0;
+        $record = 0;
+        for($f=0;$f<10;$f++){
+            $pre = Pregunta::where('id',$p[$f])->get()->first();
+            if($pre->respuestaC == $r[$f]){
+                $puntos += 10 * ($combo +1);
+                $correctas++;
+                $combo++;
+            }
+            else{
+                $combo = 0;
+            }
+        }
         $imdbID = urlencode($imdbID);
         $score = new Score;
         $score = Score::where('user_id',$iduser)->where('imdbID',$imdbID)->get()->first();
@@ -99,6 +114,7 @@ class PreguntasController extends Controller
             $score->user_id = $iduser;
             $score->imdbID = $imdbID;
             $score->save();
+            $record = 1;
         }
         else{
             if($score->puntos < $puntos){
@@ -106,12 +122,12 @@ class PreguntasController extends Controller
                 $score->save();
             }
         }
-    }
-
-    public function puntuar2(Request $request,$imdbID){
-        $respuestas = $_POST('respuestas');
-        var_dump($respuestas);
-        return view('ResultadosMiniJuego',[]);
+        return view('ResultadoMiniJuego',[
+            'combo' => $combo,
+            'puntos' => $puntos,
+            'correctas' => $correctas,
+            'record' => $record
+        ]);
     }
 
     public function getTopScore(){
@@ -119,13 +135,10 @@ class PreguntasController extends Controller
     }
 
     public function topten(){
-	$posts = Score::orderBy('puntos', 'DESC')->get();
-    	 //$scores = Score::get();
-    	// $grouped = $scores->groupBy('user_id');
+	    $posts = Score::orderBy('puntos', 'DESC')->get();
     	$lo10masalto= $posts->take(10);
     	return view('Ranking', [
             'topten' => $lo10masalto
         ]);
-
     }
 }
