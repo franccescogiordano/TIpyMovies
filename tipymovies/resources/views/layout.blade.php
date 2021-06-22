@@ -22,7 +22,7 @@
 				<div class="fl_left">
 					<ul class="nospace">
 						<li><a href="{{ route('home') }}"> <img src="{{asset('images/house.png')}}"><i></i></a></li>
-						<li><a href="">Acerca de</a></li>
+						<li><a href="{{ route('AboutAS') }}">Acerca de</a></li>
 						<li><a href="#">Contacto</a></li>
 					</ul>
 
@@ -33,7 +33,7 @@
 						<ul class="nospace">
 							@auth
 							<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesion</a></li>
-							<li><p> {{ Auth::user()->username }}</p></li>
+							<li> <a href="{{ route('UpdateUser') }}" > {{ Auth::user()->username }}</a></li>
 							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
 								@csrf
 							</form>
@@ -70,6 +70,7 @@
 							</li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('listarSeries.busqueda',['texto_busqueda' => 'lost']) }}">Series</a></li>
 							<li class="nav-item"><a  class="nav-link" href="index.html">Trivia</a></li>
+                            <li class="nav-item"><a  class="nav-link" href="{{ route('topten') }}">Ranking</a></li>
 						</ul>
 
 

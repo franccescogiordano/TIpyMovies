@@ -24,13 +24,15 @@ use Illuminate\Support\Facades\Http;
 
 //agregado
 use App\Http\Resources\UserResource;
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PeliculasController;
 use App\http\Controllers\PreguntasController;
 use App\Models\User;
 
-Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/user/{id}', [UserController::class,'show']);
 Route::view('/', 'home')->name('home');
+Route::view('/profile/edit', 'profile.edit')->middleware('auth')->name('UpdateUser');
 Route::GET('/Peliculas', [PeliculasController::class, 'getLista2'])->name('listarPeliculas');
 
 //Route::GET('/Peliculas', 'App\Http\Controllers\PeliculasController@getLista');
@@ -44,6 +46,8 @@ Route::GET('/Peliculas/{texto_busqueda}/{page}', [PeliculasController::class, 'g
 Route::GET('/Series/{idchossen}/{titlepeli}', [PeliculasController::class, 'mostrarunaSerie'])->name('DetalleSeries');
 
 Route::GET('/Series/{texto_busqueda}', [PeliculasController::class, 'getListaSeries'])->name('listarSeries.busqueda');
+
+
 
 Route::GET('/Series/{texto_busqueda}/{page}', [PeliculasController::class, 'getListaSeries'])->name('listarSeries.busqueda.page');
 
@@ -66,7 +70,7 @@ Route::GET('/user/{id}/{pass}', function ($id) {
     });*/
 
 Route::GET('/lista', [PeliculasController::class,'getLista2'])->name('lista');
-
+Route::GET('/topten', [PreguntasController::class,'topten'])->name('topten');
 Route::GET('/AgregarPregunta/{imdbID}/{titulo}', function($id,$titulo){
     return view('AgregarPregunta', ['titulo' => $titulo, 'imdbID' => $id]);
 })->name('Agregar.pregunta');
@@ -82,6 +86,8 @@ Route::GET('/Minijuego2',[PreguntasController::class,'getCuestionario2'])->name(
 Route::POST('/AgregarPregunta', [PreguntasController::class,'Agregar'])->name('Agregar');
 
 Route::POST('/MiniJuego1/Puntuacion/{imdbID}/{titulo}',[PreguntasController::class,'puntuar'])->name('Puntuar');
+Route::POST('/MiniJuego1/Puntuacion/{imdbID}/{titulo}',[PreguntasController::class,'puntuar2'])->name('Puntuar2');
 
+Route::GET('/Ranking', [PreguntasController::class,'getTopScore'])->name('ranking');
 //Route::POST('/',[PreguntasController::class,'puntuar'])->name('puntuar');
-Route::GET('/AboutAS', );
+Route::view('/About_us', 'AboutAS')->name('AboutAS');

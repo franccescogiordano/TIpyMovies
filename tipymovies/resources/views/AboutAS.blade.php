@@ -3,9 +3,9 @@
 
 @section('content')
 
-
+<link href="{{asset('css/sobrenos.css')}}" rel="stylesheet" type="text/css" media="all">
 <title>About Us</title>
-<div>
+<div class="container">
     <h2>Acerca de TIPYMOVIES:</h2>
     <p>Buscamos ser referentes de la pirateria de peliculas, ofreciendo una basta cantidad de paginas web de dudosa procedencia con pelicula taquilleras del ayer y hoy.</p>
 </div>
@@ -26,7 +26,7 @@
             <label for="subject">Mensaje</label>
             <textarea id="subject" name="subject" placeholder="Escriba su mensaje" style="height:200px"></textarea>
 
-            <input type="submit" value="Submit">
+        <input class="btn btn-default my-2 my-sm-0" type="submit" value="Enviar">
 
         </form>
     </div>

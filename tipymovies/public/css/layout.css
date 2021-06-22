@@ -67,7 +67,6 @@ File: Layout CSS
   width: 50%;
 position: relative;
   padding: 10px;
-
     position: relative;
     display: flex;
     flex-direction: column;
@@ -226,11 +225,11 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 /* Tables
 --------------------------------------------------------------------------------------------------------------- */
-table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top;}
-table, th{table-layout:auto;}
-table{width:100%; margin-bottom:15px;}
-th, td{padding:5px 8px;}
-td{border-width:0 1px;}
+table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top; background-color: #303030;}
+table, th{table-layout:auto; background-color: #303030;}
+table{width:100%; margin-bottom:15px; background-color: #303030;}
+th, td{padding:5px 8px; background-color: #303030;}
+td{border-width:0 1px; background-color: #303030;}
 
 
 /* Gallery
@@ -421,6 +420,7 @@ table a, #comments a{background-color:inherit;}
 
 .botoncito{
 
+margin-right: 3px;
 background-color: #f44336!important;
 color: #FFFFFF!important;
 padding: 14px 25px!important;
