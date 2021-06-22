@@ -29,11 +29,10 @@
         <a class="botoncito" href="" id="linkpelipelisflix" target="_blank">Pelisflix</a>
 	</div><br>
     <div class="d-flex justify-content-center">
-        <p class="heading">Trivia: </p>
-    </div>
-    <div class="d-flex justify-content-center">
-        <a class="botoncito" href="{{Route('MiniJuego1', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()])}}" id="linkpeli">Jugar</a>
-        <a class="botoncito" href="{{Route('Agregar.pregunta', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()])}}" id="linkpeli">Agregar pregunta</a>
+        @auth
+        <a class="botoncito" href="{{ Route('MiniJuego1', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()]) }}" id="linkpeli">Jugar</a>
+        <a class="botoncito" href="{{ Route('Agregar.pregunta', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()]) }}" id="linkpeli">Agregar pregunta</a>
+        @endauth
     </div>
 
 </div>
@@ -64,8 +63,8 @@
    	gapi.client.setApiKey("AIzaSyByZD4zxHn5Z6VaC09o618n85H4AL-Kf_0");
    	return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch/v1/rest")
    	.then(function() {
-   		execute(); 
-   		console.log("GAPI client loaded for API"); 
+   		execute();
+   		console.log("GAPI client loaded for API");
    		executecuevana();
         executegnula();
         executecuevanalive();
@@ -167,8 +166,9 @@ function hndlr(response, buscador) {
     	console.log(response);
     	console.log(item);
     	if (buscador=="general")
-    		document.getElementById("linkpeli").href = item.link; 
+    		document.getElementById("linkpeli").href = item.link;
     	else if (buscador=="cuevana")
+<<<<<<< HEAD
     		document.getElementById("linkpelicuevana").href = item.link;   
         else if (buscador=="gnula")
             document.getElementById("linkpelignula").href = item.link;  
@@ -178,10 +178,13 @@ function hndlr(response, buscador) {
             document.getElementById("linkpelicinecalidad").href = item.link;
         else if (buscador=="pelisflix")
             document.getElementById("linkpelipelisflix").href = item.link; 
+=======
+    		document.getElementById("linkpelicuevana").href = item.link;
+>>>>>>> 26d57713c8fc0615b935584b52dc9b9dde818d5b
         // in production code, item.htmlTitle should have the HTML entities escaped.
-        
-        
-         // document.getElementById("linkpeli").href = item.link;  
+
+
+         // document.getElementById("linkpeli").href = item.link;
           // document.getElementById("linkpeli").href = item.link;
     // }
 }
