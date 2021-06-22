@@ -11,16 +11,15 @@
     <div id="pageintro" class="hoc clear">
       <article>
         <div>
-          <p class="heading">Listado de Peliculas</p>
+          <p class="heading">Ranking de usuarios Global</p>
 
             <div class="container">
             <table class="table table-dark">
             <thead>
                 <tr>
                 <th scope="col">#</th>
-                <th scope="col">UserName</th>
+                <th scope="col">Nombre de Usuario</th>
                 <th scope="col">Puntos</th>
-                <th scope="col">Handle</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,11 +27,10 @@
                     $cont = 1;
                 @endphp
                 @foreach($topten as $top)
-                    <tr>
+                    <tr bgcolor="black">
                         <th scope="row">{{$cont}}</th>
                         <td>{{ $top->user_id }}</td>
                         <td>{{ $top->puntos }}</td>
-                        <td>@mdo</td>
                     </tr>
                     @php
                         $cont++;
