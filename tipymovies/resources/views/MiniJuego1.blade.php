@@ -13,11 +13,7 @@
                 <article>
                     <div>
                         <div style="align-items: center;">
-                        <p id="correctas">correctas</p>
-                        <p id="combo">combo</p>
-                        <p id="puntos">puntos</p>
-                        </div>
-
+                        <img src="{{ $poster }}">
                         <h2 id="pregunta" class="heading">pregunta</h2>
 
                         <div class="container">
