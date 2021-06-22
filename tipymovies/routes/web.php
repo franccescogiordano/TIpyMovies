@@ -90,4 +90,4 @@ Route::POST('/MiniJuego1/Puntuacion/{imdbID}/{titulo}',[PreguntasController::cla
 
 Route::GET('/Ranking', [PreguntasController::class,'getTopScore'])->name('ranking');
 //Route::POST('/',[PreguntasController::class,'puntuar'])->name('puntuar');
-Route::GET('/AboutAS', );
+Route::view('/About_us', 'AboutAS')->name('AboutAS');
