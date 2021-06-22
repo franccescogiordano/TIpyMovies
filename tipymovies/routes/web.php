@@ -84,3 +84,4 @@ Route::POST('/AgregarPregunta', [PreguntasController::class,'Agregar'])->name('A
 Route::POST('/MiniJuego1/Puntuacion/{imdbID}/{titulo}',[PreguntasController::class,'puntuar'])->name('Puntuar');
 
 //Route::POST('/',[PreguntasController::class,'puntuar'])->name('puntuar');
+Route::GET('/AboutAS', );
