@@ -21,3 +21,4 @@ use App\Http\Controllers\UserController;
 Route::resource('User','UserController');
 Route::POST('/user/login/', [UserController::class, 'login'])->name('loginmovil');
 Route::GET('/agregarPregunta',[PreguntasController::class, 'Agregar']);
+Route::GET('/RankingMovil', [PreguntasController::class,'getTopScoreMovil'])->name('rankingmovil');
