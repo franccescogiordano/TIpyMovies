@@ -23,8 +23,10 @@
 	<div class="d-flex justify-content-center">
 		<a class="botoncito" href="" id="linkpeli" target="_blank">Ver Pelicula</a>
 		<a class="botoncito" href="" id="linkpelicuevana" target="_blank">Cuevana</a>
-		<a class="botoncito" href="{{Route('MiniJuego1', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()])}}" id="linkpeli">Jugar</a>
-		<a class="botoncito" href="{{Route('Agregar.pregunta', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()])}}" id="linkpeli">Agregar pregunta</a>
+        @auth
+		<a class="botoncito" href="{{ Route('MiniJuego1', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()]) }}" id="linkpeli">Jugar</a>
+		<a class="botoncito" href="{{ Route('Agregar.pregunta', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()]) }}" id="linkpeli">Agregar pregunta</a>
+        @endauth
 	</div>
 
 </div>
@@ -55,8 +57,8 @@
    	gapi.client.setApiKey("AIzaSyByZD4zxHn5Z6VaC09o618n85H4AL-Kf_0");
    	return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch/v1/rest")
    	.then(function() {
-   		execute(); 
-   		console.log("GAPI client loaded for API"); 
+   		execute();
+   		console.log("GAPI client loaded for API");
    		executecuevana();
    	},
    	function(err) { console.error("Error loading GAPI client for API", err); });
@@ -98,13 +100,13 @@ function hndlr(response, buscador) {
     	console.log(response);
     	console.log(item);
     	if (buscador=="general")
-    		document.getElementById("linkpeli").href = item.link; 
+    		document.getElementById("linkpeli").href = item.link;
     	else if (buscador=="cuevana")
-    		document.getElementById("linkpelicuevana").href = item.link;   
+    		document.getElementById("linkpelicuevana").href = item.link;
         // in production code, item.htmlTitle should have the HTML entities escaped.
-        
-        
-         // document.getElementById("linkpeli").href = item.link;  
+
+
+         // document.getElementById("linkpeli").href = item.link;
           // document.getElementById("linkpeli").href = item.link;
     // }
 }

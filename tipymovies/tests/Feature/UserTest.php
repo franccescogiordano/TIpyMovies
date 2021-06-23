@@ -14,26 +14,26 @@ class UserTest extends TestCase
      * @return void
      */
     public function test_example(){
-   /* 
+   /*
         $response = $this->post(route('login'), [
         'email' => 'santiag222o222@gmail.com',
         'password' => 'santiago22222'
     ]);*/
 
     $this->assertDatabaseHas('users', [
-    'email' => 'santiago222@gmail.com'
-   
+    'email' => 'bf@gmail.com'
+
 
 ]);
 
-    $useremail = User::where('email', 'bernifirpo3@gmail.com')->first();
-    $username= User::where('name', 'bernardo fir22po')->first();
+    $useremail = User::where('email', 'bf@gmail.com')->first();
+    $username= User::where('name', 'berni')->first();
     $this->assertNotNull($useremail);
     $this->assertNotNull($username);
-       // $response->assertRedirect(route('home'));
+    //$response->assertRedirect(route('home'));
     //$this->assertAuthenticatedAs($user);
-/**/
-       // $response->assertStatus(200);
+
+    // $response->assertStatus(200);
     //}
 }
 }
