@@ -184,4 +184,16 @@ class PreguntasController extends Controller
         'topten' => $lo10masalto
         ]);
     }
+
+    public function toptenMovil(){
+        $posts = Score::orderBy('puntos', 'DESC')->get();
+        $lo10masalto= $posts->take(10);
+        $lo10masalto->each(function($item){
+            $iduser = $item->user_id;
+            $users = User::where('id',$iduser)->get()->first();
+        });
+        return response()->json([
+            'topten' => $lo10masalto
+            ]);
+        }
 }

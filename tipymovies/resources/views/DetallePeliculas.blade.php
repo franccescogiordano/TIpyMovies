@@ -6,28 +6,28 @@
 </div>
 <div class="container">
 
-	<div class="d-flex justify-content-center">
-		<img class="img-fluid" id="Poster" src='{{ $peliculas->getPoster() }}' alt='{{ $peliculas->getTitulo() }}' >
-	</div>
-	<ul >
-		<li>Titulo: {{$peliculas->getTitulo()}}</li>
-		<li>Duracion : {{$peliculas->getRuntime()}}</li>
-		<li>Clasificacion : {{$peliculas->getRated()}}</li>
-		<li>Sinopsis: {{$peliculas->getPlot()}}</li>
-		<li>Genero: {{$peliculas->getGenero()}}</li>
-		<li>Actores: {{$peliculas->getActores()}}</li>
-	</ul>
+    <div class="d-flex justify-content-center">
+        <img class="img-fluid" id="Poster" src='{{ $peliculas->getPoster() }}' alt='{{ $peliculas->getTitulo() }}'>
+    </div>
+    <ul>
+        <li>Titulo: {{$peliculas->getTitulo()}}</li>
+        <li>Duracion : {{$peliculas->getRuntime()}}</li>
+        <li>Clasificacion : {{$peliculas->getRated()}}</li>
+        <li>Sinopsis: {{$peliculas->getPlot()}}</li>
+        <li>Genero: {{$peliculas->getGenero()}}</li>
+        <li>Actores: {{$peliculas->getActores()}}</li>
+    </ul>
     <div class="d-flex justify-content-center">
         <p class="heading">Opciones para ver:</p>
     </div>
-	<div class="d-flex justify-content-center">
-		<a class="botoncito" href="" id="linkpeli" target="_blank">Ver Pelicula</a>
-		<a class="botoncito" href="" id="linkpelicuevana" target="_blank">Cuevana</a>
+    <div class="d-flex justify-content-center">
+        <a class="botoncito" href="" id="linkpeli" target="_blank">Ver Pelicula</a>
+        <a class="botoncito" href="" id="linkpelicuevana" target="_blank">Cuevana</a>
         <a class="botoncito" href="" id="linkpelignula" target="_blank">Gnula</a>
         <a class="botoncito" href="" id="linkpelicuevanalive" target="_blank">Cuevana live</a>
         <a class="botoncito" href="" id="linkpelicinecalidad" target="_blank">Cine Calidad</a>
         <a class="botoncito" href="" id="linkpelipelisflix" target="_blank">Pelisflix</a>
-	</div><br>
+    </div><br>
     <div class="d-flex justify-content-center">
         @auth
         <a class="botoncito" href="{{ Route('MiniJuego1', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()]) }}" id="linkpeli">Jugar</a>
@@ -168,7 +168,7 @@ function hndlr(response, buscador) {
     	if (buscador=="general")
     		document.getElementById("linkpeli").href = item.link;
     	else if (buscador=="cuevana")
-<<<<<<< HEAD
+
     		document.getElementById("linkpelicuevana").href = item.link;   
         else if (buscador=="gnula")
             document.getElementById("linkpelignula").href = item.link;  
@@ -178,9 +178,6 @@ function hndlr(response, buscador) {
             document.getElementById("linkpelicinecalidad").href = item.link;
         else if (buscador=="pelisflix")
             document.getElementById("linkpelipelisflix").href = item.link; 
-=======
-    		document.getElementById("linkpelicuevana").href = item.link;
->>>>>>> 26d57713c8fc0615b935584b52dc9b9dde818d5b
         // in production code, item.htmlTitle should have the HTML entities escaped.
 
 
@@ -190,6 +187,7 @@ function hndlr(response, buscador) {
 }
 
 gapi.load("client");
+
 </script>
 
 
