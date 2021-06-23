@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pregunta;
 use App\Models\Pelicula;
 use App\Models\Score;
+use App\Models\User;
 use App\Models\Trivia;
 use Illuminate\Http\Request;
 
@@ -177,10 +178,10 @@ class PreguntasController extends Controller
     }
 
     public function topten(){
-	    $posts = Score::orderBy('puntos', 'DESC')->get();
-    	$lo10masalto= $posts->take(10);
-    	return view('Ranking', [
-            'topten' => $lo10masalto
+	$posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->orderBy('puntos', 'DESC')->get();
+    $lo10masalto= $posts->take(10);
+    return view('Ranking', [
+        'topten' => $lo10masalto
         ]);
     }
 }

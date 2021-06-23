@@ -91,3 +91,4 @@ Route::POST('/MiniJuego1/Puntuacion',[PreguntasController::class,'puntuar2'])->n
 
 Route::GET('/Ranking', [PreguntasController::class,'getTopScore'])->name('ranking');
 //Route::POST('/',[PreguntasController::class,'puntuar'])->name('puntuar');
+Route::view('/About_us', 'AboutAS')->name('AboutAS');

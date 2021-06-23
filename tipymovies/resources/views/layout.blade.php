@@ -22,7 +22,7 @@
 				<div class="fl_left">
 					<ul class="nospace">
 						<li><a href="{{ route('home') }}"> <img src="{{asset('images/house.png')}}"><i></i></a></li>
-						<li><a href="#">Acerca de</a></li>
+						<li><a href="{{ route('AboutAS') }}">Acerca de</a></li>
 						<li><a href="#">Contacto</a></li>
 					</ul>
 
