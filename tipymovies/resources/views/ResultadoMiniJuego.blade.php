@@ -17,7 +17,9 @@
                 <p>Mejor combo: {{ $combo }}</p>
                 <p>Respuesta correctas: {{ $correctas }}</p>
                 <p>Total de puntos: {{ $puntos }}</p>
+                @if($record == 1)
                 <p>Nuevo Record!!</p><!--con un if de laravel-->
+                @endif
             </div>
         <footer>
           <!--<ul class="nospace inline pushright">

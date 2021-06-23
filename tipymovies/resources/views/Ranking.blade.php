@@ -29,7 +29,7 @@
                 @foreach($topten as $top)
                     <tr bgcolor="black">
                         <th scope="row">{{$cont}}</th>
-                        <td>{{ $top->user_id }}</td>
+                        <td>{{ $top->username }}</td>
                         <td>{{ $top->puntos }}</td>
                     </tr>
                     @php
