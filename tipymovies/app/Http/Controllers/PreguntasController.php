@@ -40,7 +40,7 @@ class PreguntasController extends Controller
         $response = $client->get('http://www.omdbapi.com/',['query' => ['i' => $imdbID,'apikey'=>'169e719d']]);
         $json_response=json_decode($response->getBody(), true);
         $poster  = $json_response["Poster"];
-        $pre = Pregunta::where('imdbID',$imdbID)->get()->random(10);
+        $pre = Pregunta::where('imdbID',$imdbID)->get()->random(10)->shuffle();
         $this->preguntas = array();
         $pre->each(function($item){
             //echo "en el each";
@@ -133,10 +133,8 @@ class PreguntasController extends Controller
             $record = 1;
         }
         else{
-            if($score->puntos < $puntos){
-                $score->puntos = $puntos;
+      			$score->puntos += $puntos;
                 $score->save();
-            }
         }
         return view('ResultadoMiniJuego',[
             'combo' => $combo,
@@ -178,7 +176,7 @@ class PreguntasController extends Controller
     }
 
     public function topten(){
-	$posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->orderBy('puntos', 'DESC')->get();
+	$posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
     $lo10masalto= $posts->take(10);
     return view('Ranking', [
         'topten' => $lo10masalto

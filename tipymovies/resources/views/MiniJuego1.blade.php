@@ -13,7 +13,9 @@
                 <article>
                     <div>
                         <div style="align-items: center;">
+                        	<h2 class="heading">RESPONDE ESTAS 10 PREGUNTAS DE: {{ $titulo }}</h2>
                         <img src="{{ $poster }}">
+                        
                         <h2 id="pregunta" class="heading">pregunta</h2>
 
                         <div class="container">

@@ -28,12 +28,17 @@
             <a class="botoncito" href="" id="linkpelicinecalidad" target="_blank">Cine Calidad</a>
             <a class="botoncito" href="" id="linkpelipelisflix" target="_blank">Pelisflix</a>
         </div><br>
+          <div class="d-flex justify-content-center">
+            <p class="heading">Opciones para Jugar:</p>
+        </div>
+
         <div class="d-flex justify-content-center">
             @auth
             <a class="botoncito" href="{{ Route('MiniJuego1', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()]) }}" id="linkpeli">Jugar</a>
             <a class="botoncito" href="{{ Route('Agregar.pregunta', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()]) }}" id="linkpeli">Agregar pregunta</a>
             @endauth
         </div>
+        <br>
         <div class="d-flex justify-content-center">
             <p class="heading">Top 10 - Mejores puntajes de: {{$peliculas->getTitulo()}}</p>
         </div>
@@ -50,23 +55,30 @@
                     @php
                         $cont = 1;
                     @endphp
+                    @if ($cant == 0)
+                    @else
                         @foreach($toppeli as $top)
-                            <tr bgcolor="black">
+                        	<tr bgcolor="black">
                             <th scope="row">{{$cont}}</th>
                             <td>{{ $top->username }}</td>
                             <td>{{ $top->puntos }}</td>
                         </tr>
+                        
                         @php
                             $cont++;
                         @endphp
+
                         @endforeach
+                        @endif
                         </tbody>
                 </table>
         </div>
 
     </div>
     <script src="https://apis.google.com/js/api.js"></script>
-    <script>
+
+  <!--    <script window.onload=loadClient type="text/javascript" src="{{ URL::asset('js/buscadordepelis.js') }}"></script> --->
+ 	<script>
     	window.onload=loadClient;
     	 //loadClient("datospeli");
     	// sleep(500);
@@ -217,7 +229,7 @@
 
     gapi.load("client");
 
-    </script>
+    </script> 
 
 
     @endsection
