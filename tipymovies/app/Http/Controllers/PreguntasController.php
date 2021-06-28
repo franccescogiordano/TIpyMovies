@@ -100,7 +100,6 @@ class PreguntasController extends Controller
         ]);
     }
 
-
     public function puntuar(Request $request,$imdbID){
         $iduser = $request->input('iduser');
         $r = $request->input('respuestas');
