@@ -71,6 +71,7 @@ Route::GET('/user/{id}/{pass}', function ($id) {
 
 Route::GET('/lista', [PeliculasController::class,'getLista2'])->name('lista');
 Route::GET('/topten', [PreguntasController::class,'topten'])->name('topten');
+Route::GET('/toptenPeli', [PreguntasController::class,'toptenPeli'])->name('toptenPeli');
 Route::GET('/AgregarPregunta/{imdbID}/{titulo}', function($id,$titulo){
     return view('AgregarPregunta', ['titulo' => $titulo, 'imdbID' => $id]);
 })->name('Agregar.pregunta');
