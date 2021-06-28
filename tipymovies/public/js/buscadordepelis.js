@@ -1,79 +1,4 @@
-    @extends('layout')
-
-    @section('content')
-    <div>
-    	
-    </div>
-    <div class="container">
-
-    	<div class="d-flex justify-content-center">
-    		<img class="img-fluid" id="Poster" src='{{ $peliculas->getPoster() }}' alt='{{ $peliculas->getTitulo() }}' >
-    	
-    	</div>
-    	<ul >
-    		<li>Titulo: {{$peliculas->getTitulo()}}</li>
-    		<li>Duracion : {{$peliculas->getRuntime()}}</li>
-    		<li>Clasificacion : {{$peliculas->getRated()}}</li>
-    		<li>Sinopsis: {{$peliculas->getPlot()}}</li>
-    		<li>Genero: {{$peliculas->getGenero()}}</li>
-    		<li>Actores: {{$peliculas->getActores()}}</li>
-    	</ul>
-        <div class="d-flex justify-content-center">
-            <p class="heading">Opciones para ver:</p>
-        </div>
-        <div class="d-flex justify-content-center">
-            <a class="botoncito" href="" id="linkpeli" target="_blank">Ver Serie</a>
-            <a class="botoncito" href="" id="linkpelicuevana" target="_blank">Cuevana</a>
-            <a class="botoncito" href="" id="linkpelignula" target="_blank">Gnula</a>
-            <a class="botoncito" href="" id="linkpelicuevanalive" target="_blank">Cuevana live</a>
-            <a class="botoncito" href="" id="linkpelicinecalidad" target="_blank">Cine Calidad</a>
-            <a class="botoncito" href="" id="linkpelipelisflix" target="_blank">Pelisflix</a>
-        </div><br>
-        <div class="d-flex justify-content-center">
-            @auth
-            <a class="botoncito" href="{{ Route('MiniJuego1', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()]) }}" id="linkpeli">Jugar</a>
-            <a class="botoncito" href="{{ Route('Agregar.pregunta', ['titulo' => $peliculas->getTitulo(), 'imdbID' => $peliculas->getId()]) }}" id="linkpeli">Agregar pregunta</a>
-            @endauth
-        </div>
-        <div class="d-flex justify-content-center">
-            <p class="heading">Top 10 - Mejores puntajes de: {{$peliculas->getTitulo()}}</p>
-        </div>
-        <div>
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre de Usuario</th>
-                    <th scope="col">Puntos</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   @php
-                        $cont = 1;
-                    @endphp
-                    @if ($cant == 0)
-                    @else
-                        @foreach($toppeli as $top)
-                        	<tr bgcolor="black">
-                            <th scope="row">{{$cont}}</th>
-                            <td>{{ $top->username }}</td>
-                            <td>{{ $top->puntos }}</td>
-                        </tr>
-                        
-                        @php
-                            $cont++;
-                        @endphp
-
-                        @endforeach
-                        @endif
-                        </tbody>
-                </table>
-        </div>
-        </div>
-        </div>
-    <script src="https://apis.google.com/js/api.js"></script>
-<script>
-    	window.onload=loadClient;
+window.onload=loadClient;
     	 //loadClient("datospeli");
     	// sleep(500);
     	 //execute("datospeli");
@@ -222,8 +147,3 @@
     }
 
     gapi.load("client");
-
-    </script> 
-
-
-    @endsection

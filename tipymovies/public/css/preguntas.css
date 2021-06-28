@@ -31,5 +31,6 @@ font-family: Georgia, 'Times New Roman', Times, serif;
     margin-bottom: 15px;
 }
 .respuestas{
-    width: 20%;
+    width: 40%;
+    height: 30px;
 }
