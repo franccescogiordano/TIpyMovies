@@ -32,6 +32,24 @@ class PreguntasController extends Controller
             return redirect()->Route('Agregar.pregunta', ['titulo' => $titulo, 'imdbID' => $pre->imdbID]);
     }
 
+    public function AgregarMovil(Request $request){
+        $pre = new Pregunta;
+        $pre->pregunta = $request->input('pregunta');
+        $pre->respuestaC = $request->input('respuestaC');
+        $pre->respuestaI1 = $request->input('respuestaI1');
+        $pre->respuestaI2 = $request->input('respuestaI2');
+        $pre->respuestaI3 = $request->input('respuestaI3');
+        $pre->imdbID = $request->input('imdbID');
+        $pre->validada=1;
+
+        $pre->save();
+        //return redirect()->Route('Agregar.pregunta', ['titulo' => $titulo, 'imdbID' => $pre->imdbID]);
+        return response()->json([
+            'resultado' => 'ok'
+            ]);
+    }
+
+
     public function getCuestionario($imdbID,$titulo){
         $imdbID = urldecode($imdbID);
         $titulo = urldecode($titulo);
@@ -184,7 +202,7 @@ class PreguntasController extends Controller
     }
 
     public function toptenMovil(){
-        $posts = Score::orderBy('puntos', 'DESC')->get();
+        $posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
         $lo10masalto= $posts->take(10);
         $lo10masalto->each(function($item){
             $iduser = $item->user_id;
