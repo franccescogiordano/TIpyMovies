@@ -68,6 +68,13 @@ class PreguntasController extends Controller
         ]);
     }
 
+    public function getCuestionarioMovil1(Request $request){
+        $imdbID  = $request->input('imdbID');
+        $pre = Pregunta::where('imdbID',$imdbID)->get()->random(10)->shuffle();
+        $trivia  = json_encode($pre);
+        return  $trivia;
+    }
+
     public function getCuestionario2(){
         $pre = Pregunta::get()->random(10);
         $client = new \GuzzleHttp\Client();
