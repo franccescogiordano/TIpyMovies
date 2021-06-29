@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pregunta;
 use App\Models\Pelicula;
 use App\Models\Score;
+use App\Models\User;
 use App\Models\Trivia;
 use Illuminate\Http\Request;
 
@@ -31,6 +32,24 @@ class PreguntasController extends Controller
             return redirect()->Route('Agregar.pregunta', ['titulo' => $titulo, 'imdbID' => $pre->imdbID]);
     }
 
+    public function AgregarMovil(Request $request){
+        $pre = new Pregunta;
+        $pre->pregunta = $request->input('pregunta');
+        $pre->respuestaC = $request->input('respuestaC');
+        $pre->respuestaI1 = $request->input('respuestaI1');
+        $pre->respuestaI2 = $request->input('respuestaI2');
+        $pre->respuestaI3 = $request->input('respuestaI3');
+        $pre->imdbID = $request->input('imdbID');
+        $pre->validada=1;
+
+        $pre->save();
+        //return redirect()->Route('Agregar.pregunta', ['titulo' => $titulo, 'imdbID' => $pre->imdbID]);
+        return response()->json([
+            'resultado' => 'ok'
+            ]);
+    }
+
+
     public function getCuestionario($imdbID,$titulo){
         $imdbID = urldecode($imdbID);
         $titulo = urldecode($titulo);
@@ -39,7 +58,7 @@ class PreguntasController extends Controller
         $response = $client->get('http://www.omdbapi.com/',['query' => ['i' => $imdbID,'apikey'=>'169e719d']]);
         $json_response=json_decode($response->getBody(), true);
         $poster  = $json_response["Poster"];
-        $pre = Pregunta::where('imdbID',$imdbID)->get()->random(10);
+        $pre = Pregunta::where('imdbID',$imdbID)->get()->random(10)->shuffle();
         $this->preguntas = array();
         $pre->each(function($item){
             //echo "en el each";
@@ -138,10 +157,8 @@ class PreguntasController extends Controller
             $record = 1;
         }
         else{
-            if($score->puntos < $puntos){
-                $score->puntos = $puntos;
+      			$score->puntos += $puntos;
                 $score->save();
-            }
         }
         return view('ResultadoMiniJuego',[
             'combo' => $combo,
@@ -183,10 +200,22 @@ class PreguntasController extends Controller
     }
 
     public function topten(){
-	    $posts = Score::orderBy('puntos', 'DESC')->get();
-    	$lo10masalto= $posts->take(10);
-    	return view('Ranking', [
-            'topten' => $lo10masalto
+	$posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
+    $lo10masalto= $posts->take(10);
+    return view('Ranking', [
+        'topten' => $lo10masalto
         ]);
     }
+
+    public function toptenMovil(){
+        $posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
+        $lo10masalto= $posts->take(10);
+        $lo10masalto->each(function($item){
+            $iduser = $item->user_id;
+            $users = User::where('id',$iduser)->get()->first();
+        });
+        return response()->json([
+            'topten' => $lo10masalto
+            ]);
+        }
 }

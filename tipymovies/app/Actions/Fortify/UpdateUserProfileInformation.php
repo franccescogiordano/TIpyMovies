@@ -40,8 +40,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     		'name' => $input['name'],
     		'email' => $input['email'],
     	])->save();
-    	var_dump($user);
-    	exit();
+    	//var_dump($user);
+    	//exit();
     }
 }
 

@@ -39,7 +39,7 @@ class UserController extends Controller
     {
        // $this->validateLogin($request);
     	//$credentials = $request()->json()->only('email', 'password');
-        $credentials = request()->json()->all();
+        $credentials = request()->all();
         //var_dump($credentials);exit;
         //if (Auth::attempt($credentials)) {
         if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
