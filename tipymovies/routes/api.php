@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PreguntasController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,5 +22,5 @@ use App\Http\Controllers\UserController;
 
 Route::resource('User','UserController');
 Route::POST('/user/login/', [UserController::class, 'login'])->name('loginmovil');
-Route::GET('/agregarPregunta',[PreguntasController::class, 'Agregar']);
-Route::GET('/RankingMovil', [PreguntasController::class,'getTopScoreMovil'])->name('rankingmovil');
+Route::GET('/agregarPregunta',[PreguntasController::class, 'AgregarMovil'])->name('agregarPreguntaMovil');
+Route::GET('/RankingMovil', [PreguntasController::class,'toptenMovil'])->name('rankingmovil');
