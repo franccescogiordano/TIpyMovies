@@ -90,7 +90,7 @@ class PreguntasController extends Controller
     public function getCuestionarioMovil1(Request $request){
         $imdbID  = $request->input('imdbID');
         $pre = Pregunta::where('imdbID',$imdbID)->get()->random(10)->shuffle();
-        $trivia  = json_encode($pre);
+        $trivia  = json_encode(array('preguntas'=>$pre));
         return  $trivia;
     }
 

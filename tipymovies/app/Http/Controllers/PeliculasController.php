@@ -247,16 +247,3 @@ namespace App\Http\Controllers;
     	}
     }
 
-
-
-
-<<<<<<< HEAD
-        return view('DetallePeliculas', [
-            'titlepeli' => $pelicula->getTitulo(),
-            'peliculas' => $pelicula
-        ]);
-    }
-}
-=======
-
->>>>>>> Develop
