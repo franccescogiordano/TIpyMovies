@@ -125,6 +125,11 @@ class PreguntasController extends Controller
     }
 
     public function puntuar(Request $request,$imdbID){
+    	$client = new \GuzzleHttp\Client();
+        $response = $client->get('http://www.omdbapi.com/',['query' => ['i' => $imdbID,'apikey'=>'169e719d']]);
+        $json_response=json_decode($response->getBody(), true);
+        $poster  = $json_response["Poster"];
+        $titulo  = $json_response["Title"];
         $iduser = $request->input('iduser');
         $r = $request->input('respuestas');
         $p = $request->input('preguntas');
@@ -132,15 +137,18 @@ class PreguntasController extends Controller
         $puntos = 0;
         $correctas = 0;
         $record = 0;
+       $collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
+
         for($f=0;$f<10;$f++){
             $pre = Pregunta::where('id',$p[$f])->get()->first();
             if($pre->respuestaC == $r[$f]){
                 $combo++;
                 $puntos += 10 * ($combo);
                 $correctas++;
-
+               $collection->push(['respuestacorrecta'=>$r[$f],'respuestaincorrecta'=>'Ninguna']);
             }
             else{
+            $collection->push(['respuestacorrecta'=>'Ninguna','respuestaincorrecta'=>$r[$f]]);
                 $combo = 0;
             }
         }
@@ -159,11 +167,15 @@ class PreguntasController extends Controller
       			$score->puntos += $puntos;
                 $score->save();
         }
+        var_dump($collection);
         return view('ResultadoMiniJuego',[
             'combo' => $combo,
             'puntos' => $puntos,
             'correctas' => $correctas,
-            'record' => $record
+            'record' => $record,
+            'poster' => $poster,
+            'titulo' => $titulo,
+            'answers'=> $collection
         ]);
     }
     public function puntuarMiniJuego1Api(Request $request){
@@ -222,6 +234,7 @@ class PreguntasController extends Controller
     public function topten(){
 	$posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
     $lo10masalto= $posts->take(10);
+    var_dump($lo10masalto);
     return view('Ranking', [
         'topten' => $lo10masalto
         ]);
