@@ -43,10 +43,8 @@ class PreguntasController extends Controller
         $pre->validada=1;
 
         $pre->save();
-        //return redirect()->Route('Agregar.pregunta', ['titulo' => $titulo, 'imdbID' => $pre->imdbID]);
-        return response()->json([
-            'resultado' => 'ok'
-            ]);
+        $respuesta = "ok";
+        return json_encode($respuesta);
     }
 
 
@@ -137,9 +135,10 @@ class PreguntasController extends Controller
         for($f=0;$f<10;$f++){
             $pre = Pregunta::where('id',$p[$f])->get()->first();
             if($pre->respuestaC == $r[$f]){
-                $puntos += 10 * ($combo +1);
-                $correctas++;
                 $combo++;
+                $puntos += 10 * ($combo);
+                $correctas++;
+
             }
             else{
                 $combo = 0;
@@ -167,6 +166,27 @@ class PreguntasController extends Controller
             'record' => $record
         ]);
     }
+    public function puntuarMiniJuego1Api(Request $request){
+        $iduser = $request->input('user_id');
+        $puntos = $request->input('puntos');
+        $imdbID = $request->input('imdbID');
+        $record = 0;
+        $score = new Score;
+        $score = Score::where('user_id',$iduser)->where('imdbID',$imdbID)->get()->first();
+        if($score == null){
+            $score = new Score;
+            $score->puntos = $puntos;
+            $score->user_id = $iduser;
+            $score->imdbID = $imdbID;
+            $score->save();
+        }
+        else{
+      		$score->puntos += $puntos;
+            $score->save();
+        }
+        $record = $score->puntos;
+        return json_encode($record);
+    }
 
     public function puntuar2(Request $request){
 
@@ -179,9 +199,9 @@ class PreguntasController extends Controller
         for($f=0;$f<10;$f++){
             $pre = Pregunta::where('id',$p[$f])->get()->first();
             if($pre->respuestaC == $r[$f]){
-                $puntos += 10 * ($combo +1);
-                $correctas++;
                 $combo++;
+                $puntos += 10 * ($combo);
+                $correctas++;
             }
             else{
                 $combo = 0;
