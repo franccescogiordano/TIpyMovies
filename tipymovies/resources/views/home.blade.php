@@ -12,13 +12,10 @@
       <article>
         <div>
           <p class="heading">Listado de Peliculas</p>
+
           <h2 class="heading">Ultimos estrenos</h2>
         </div>
         <footer>
-          <ul class="nospace inline pushright">
-            <li><a class="btn inverse" href="#">Boton</a></li>
-            <li><a class="btn" href="#">Botoncito</a></li>
-          </ul>
         </footer>
       </article>
     </div>
