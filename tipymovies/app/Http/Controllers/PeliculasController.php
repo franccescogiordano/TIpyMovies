@@ -246,7 +246,4 @@ namespace App\Http\Controllers;
     		}
     	}
     }
-    	
-
-    
 
