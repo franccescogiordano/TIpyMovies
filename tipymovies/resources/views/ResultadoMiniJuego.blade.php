@@ -18,15 +18,14 @@
                 <p>Mejor combo: {{ $combo }}</p>
                 <p>Respuesta correctas: {{ $correctas }}</p>
               
-                @foreach($answers as $top)
-                  @foreach($top as $top1)
+               @foreach($answers as $top)
+         
                     <tr bgcolor="black">
 
-                        <td>{{ $top1->respuestacorrecta }}</td>
+                        <td>{{ $top }}</td>
 
                     </tr>
-                @endforeach
-                @endforeach
+                   @endforeach
                 <p>Total de puntos: {{ $puntos }}</p>
                 @if($record == 1)
                 <p>Nuevo Record!!</p><!--con un if de laravel-->
@@ -34,10 +33,6 @@
 
             </div>
         <footer>
-          <!--<ul class="nospace inline pushright">
-            <li><a class="btn inverse" href="#">Boton</a></li>
-            <li><a class="btn" href="#">Botoncito</a></li>
-          </ul>-->
         </footer>
       </article>
     </div>
