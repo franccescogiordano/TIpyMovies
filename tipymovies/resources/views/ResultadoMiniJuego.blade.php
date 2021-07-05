@@ -19,14 +19,14 @@
                 <p>Respuesta correctas: {{ $correctas }}</p>
               
               
-                {{ $answers = $answers-toArray() }}
-                @foreach($answers as $top)
+               @foreach($answers as $top)
+         
                     <tr bgcolor="black">
 
-                        <td>{{ $top->respuestacorrecta }}</td>
+                        <td>{{ $top }}</td>
 
                     </tr>
-                @endforeach
+                   @endforeach
                 <p>Total de puntos: {{ $puntos }}</p>
                 @if($record == 1)
                 <p>Nuevo Record!!</p><!--con un if de laravel-->
@@ -34,10 +34,6 @@
 
             </div>
         <footer>
-          <!--<ul class="nospace inline pushright">
-            <li><a class="btn inverse" href="#">Boton</a></li>
-            <li><a class="btn" href="#">Botoncito</a></li>
-          </ul>-->
         </footer>
       </article>
     </div>

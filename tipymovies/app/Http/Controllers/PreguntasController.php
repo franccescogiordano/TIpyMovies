@@ -167,7 +167,7 @@ class PreguntasController extends Controller
       			$score->puntos += $puntos;
                 $score->save();
         }
-        var_dump($collection);
+  //      var_dump($collection);
         return view('ResultadoMiniJuego',[
             'combo' => $combo,
             'puntos' => $puntos,
@@ -175,13 +175,15 @@ class PreguntasController extends Controller
             'record' => $record,
             'poster' => $poster,
             'titulo' => $titulo,
-            'answers'=> $collection
+            'answers'=> $collection->pluck('respuestacorrecta')
+            
         ]);
     }
     public function puntuarMiniJuego1Api(Request $request){
         $iduser = $request->input('user_id');
         $puntos = $request->input('puntos');
         $imdbID = $request->input('imdbID');
+       //  $collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
         $record = 0;
         $score = new Score;
         $score = Score::where('user_id',$iduser)->where('imdbID',$imdbID)->get()->first();
@@ -201,7 +203,7 @@ class PreguntasController extends Controller
     }
 
     public function puntuar2(Request $request){
-
+$collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
         $r = $request->input('respuestas');
         $p = $request->input('preguntas');
         $combo = 0;
@@ -212,10 +214,12 @@ class PreguntasController extends Controller
             $pre = Pregunta::where('id',$p[$f])->get()->first();
             if($pre->respuestaC == $r[$f]){
                 $combo++;
+                    $collection->push(['respuestacorrecta'=>$r[$f],'respuestaincorrecta'=>'Ninguna']);
                 $puntos += 10 * ($combo);
                 $correctas++;
             }
             else{
+                  $collection->push(['respuestacorrecta'=>'Ninguna','respuestaincorrecta'=>$r[$f]]);
                 $combo = 0;
             }
         }
@@ -223,7 +227,8 @@ class PreguntasController extends Controller
             'combo' => $combo,
             'puntos' => $puntos,
             'correctas' => $correctas,
-            'record' => $record
+            'record' => $record,
+            'answers'=> $collection->toArray()
         ]);
     }
 
