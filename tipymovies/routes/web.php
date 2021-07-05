@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Http;
 
 //agregado
 use App\Http\Resources\UserResource;
-
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PeliculasController;
 use App\http\Controllers\PreguntasController;
@@ -92,4 +92,8 @@ Route::POST('/MiniJuego1/Puntuacion',[PreguntasController::class,'puntuar2'])->n
 
 Route::GET('/Ranking', [PreguntasController::class,'getTopScore'])->name('ranking');
 //Route::POST('/',[PreguntasController::class,'puntuar'])->name('puntuar');
-Route::view('/About_us', 'AboutAS')->name('AboutAS');
+Route::view('/contactUs', 'contactUs')->name('ContactUs');
+//Route::GET('contact-us', 'ContactUsController@contactUs');
+Route::GET('/contact-us', [ContactUsController::class,'contactUs'])->name('contact-us');
+//Route::POST('contact-us',['as'=>'contactus.store','uses'=>'ContactUsController@contactUsPost']);
+Route::POST('/contactUs', [ContactUsController::class,'contactUsPost'])->name('contactus.store');
