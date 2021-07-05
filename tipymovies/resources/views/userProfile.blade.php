@@ -1,6 +1,7 @@
     @extends('layouts.app')
 
     @section('content')
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <div class="container mt--8 pb-5">
         <div class="row justify-content-center">
             <div class="card-body px-lg-5 py-lg-5">
@@ -49,26 +50,27 @@
                     <br>
                     <div class="container">
                         <table class="table table-dark" id="scores">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nombre de Usuario</th>
-                                    <th scope="col">Puntos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                $cont = 1;
-                                @endphp
-                                @foreach($pelisUser as $pelis)
-                                    <tr bgcolor="black">
-                                    <td>{{ $pelis->$username }}</td>
-                                    <td>{{ $pelis->$puntos }}</td>
-                                </tr>
-                                @php
-                                $cont++;
-                                @endphp
-                                @endforeach
-                            </tbody>
+                            <tr>
+                                <th scope="col">Nombre de Usuario</th>
+                                <th scope="col">Puntos</th>
+                            </tr>
+                            <script>
+                                $(document).ready(function () {
+
+                                    $.getJSON('pelisUser', function (data) {
+                                        var peli = '';
+                                        $.each(data, function (key, value) {
+                                            peli += '<tr>';
+                                            peli += '<td>' + 
+                                                value.username1 + '</td>';
+                                            peli += '<td>' + 
+                                                value.puntos1 + '</td>';
+                                            peli += '</tr>';
+                                        });
+                                    $('#scores').append(peli);
+                                    });
+                                });
+                            </script>
                         </table>
                     </div>
 

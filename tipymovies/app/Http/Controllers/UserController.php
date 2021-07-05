@@ -75,7 +75,7 @@ class UserController extends Controller
             $peliculas->put('titulo' . $i,$titulo);
         }
         $peliJson = json_encode($peliculas);
-        var_dump($peliJson);
-        return view('userProfile')->with('pelisUser',$peliJson);
+        //var_dump($peliJson);
+        return view('userProfile')->with('pelisUser', $peliJson);
     }
 }
