@@ -137,20 +137,29 @@ class PreguntasController extends Controller
         $puntos = 0;
         $correctas = 0;
         $record = 0;
-       $collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
+     //   $collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
+        $collection = collect([]);
 
         for($f=0;$f<10;$f++){
+        	$array1=[];
             $pre = Pregunta::where('id',$p[$f])->get()->first();
+         //   $collection->push(['pregunta'=>$pre->pregunta]);
+            $array1['pregunta']=$pre->pregunta;
+            $array1['respuestacorrecta']=$pre->respuestaC;
+            $array1['answeruser']=$r[$f];
+        //   $collection->push(['respuestacorrecta'=>$pre->respuestaC]);
+            /*   $collection->push(['todo'=>$r[$f]]);*/
             if($pre->respuestaC == $r[$f]){
                 $combo++;
                 $puntos += 10 * ($combo);
                 $correctas++;
-               $collection->push(['respuestacorrecta'=>$r[$f],'respuestaincorrecta'=>'Ninguna']);
+            //    $collection->push(['answeruser'=>$r[$f]]);
             }
             else{
-            $collection->push(['respuestacorrecta'=>'Ninguna','respuestaincorrecta'=>$r[$f]]);
+            //	$collection->push(['answeruser'=>$r[$f]]);
                 $combo = 0;
             }
+            $collection->push($array1);
         }
         $imdbID = urlencode($imdbID);
         $score = new Score;
@@ -167,7 +176,7 @@ class PreguntasController extends Controller
       			$score->puntos += $puntos;
                 $score->save();
         }
-  //      var_dump($collection);
+  //  var_dump($collection);
         return view('ResultadoMiniJuego',[
             'combo' => $combo,
             'puntos' => $puntos,
@@ -175,7 +184,10 @@ class PreguntasController extends Controller
             'record' => $record,
             'poster' => $poster,
             'titulo' => $titulo,
-            'answers'=> $collection->pluck('respuestacorrecta')
+           // 'questions'=> $collection->pluck('pregunta'),
+         //  'answers'=> $collection->pluck('respuestacorrecta'),
+           'respuestauser' => $collection
+           
             
         ]);
     }
@@ -203,7 +215,7 @@ class PreguntasController extends Controller
     }
 
     public function puntuar2(Request $request){
-$collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
+//$collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
         $r = $request->input('respuestas');
         $p = $request->input('preguntas');
         $combo = 0;
@@ -214,12 +226,12 @@ $collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' =
             $pre = Pregunta::where('id',$p[$f])->get()->first();
             if($pre->respuestaC == $r[$f]){
                 $combo++;
-                    $collection->push(['respuestacorrecta'=>$r[$f],'respuestaincorrecta'=>'Ninguna']);
+                 //   $collection->push(['respuestacorrecta'=>$r[$f],'respuestaincorrecta'=>'Ninguna']);
                 $puntos += 10 * ($combo);
                 $correctas++;
             }
             else{
-                  $collection->push(['respuestacorrecta'=>'Ninguna','respuestaincorrecta'=>$r[$f]]);
+                 // $collection->push(['respuestacorrecta'=>'Ninguna','respuestaincorrecta'=>$r[$f]]);
                 $combo = 0;
             }
         }
@@ -227,8 +239,8 @@ $collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' =
             'combo' => $combo,
             'puntos' => $puntos,
             'correctas' => $correctas,
-            'record' => $record,
-            'answers'=> $collection->toArray()
+            'record' => $record
+           // 'answers'=> $collection->toArray()
         ]);
     }
 
