@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pregunta;
 use App\Models\Pelicula;
 use App\Models\Score;
+use App\Models\Score2;
 use App\Models\User;
 use App\Models\Trivia;
 use Illuminate\Http\Request;
@@ -121,7 +122,7 @@ class PreguntasController extends Controller
     }
 
     public function getCuestionario2(){
-        $pre = Pregunta::get()->random(10);
+        $pre = Pregunta::get()->random(10)->shuffle();
         $client = new \GuzzleHttp\Client();
         $poster =[];
         foreach($pre as $pregunta){
@@ -224,7 +225,9 @@ class PreguntasController extends Controller
 
         $r = $request->input('respuestas');
         $p = $request->input('preguntas');
+        $id_user = $request->input('id_user');
         $combo = 0;
+        $mejorCombo = 0;
         $puntos = 0;
         $correctas = 0;
         $record = 0;
@@ -234,13 +237,28 @@ class PreguntasController extends Controller
                 $combo++;
                 $puntos += 10 * ($combo);
                 $correctas++;
+                if($combo > $mejorCombo)
+                    $mejorCombo = $combo;
             }
             else{
                 $combo = 0;
             }
         }
+        $score = new Score2;
+        $score = Score2::where('user_id',$id_user)->get()->first();
+        if($score == null){
+            $score = new Score2;
+            $score->puntos = $puntos;
+            $score->user_id = $id_user;
+            $score->save();
+            $record = 1;
+        }
+        else{
+      			$score->puntos += $puntos;
+                $score->save();
+        }
         return view('ResultadoMiniJuego',[
-            'combo' => $combo,
+            'combo' => $mejorCombo,
             'puntos' => $puntos,
             'correctas' => $correctas,
             'record' => $record
