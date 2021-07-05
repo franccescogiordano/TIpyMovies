@@ -48,10 +48,9 @@
                     </div>
                     <br>
                     <div class="container">
-                        <table class="table table-dark">
+                        <table class="table table-dark" id="scores">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
                                     <th scope="col">Nombre de Usuario</th>
                                     <th scope="col">Puntos</th>
                                 </tr>
@@ -61,10 +60,9 @@
                                 $cont = 1;
                                 @endphp
                                 @foreach($pelisUser as $pelis)
-                                <tr bgcolor="black">
-                                    <th scope="row">{{$cont}}</th>
-                                    <td>{{ $pelis->username }}</td>
-                                    <td>{{ $pelis->puntos }}</td>
+                                    <tr bgcolor="black">
+                                    <td>{{ $pelis->$username }}</td>
+                                    <td>{{ $pelis->$puntos }}</td>
                                 </tr>
                                 @php
                                 $cont++;
@@ -84,4 +82,25 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+
+<!--<script>
+
+    $(function() {
+        //var num = 1;
+        //var u = "username";
+        //var p = "puntos";
+        window.__pelisUser = JSON.parse("{!!$pelisUser!!}");
+        $.getJSON($pelisUser, function(data) {
+            $.each(data, function(i, f) {
+                //var = u.concat(num);
+                //var = p.concat(num);
+                var tblRow = "<tr>" + "<td>" + f.username1 + "</td>" + "<td>" + f.puntos1 + "</tr>";
+                $(tblRow).appendTo("#scores tbody");
+                //num = num + 1;
+            });
+        });
+    });
+</script>-->
 @endsection

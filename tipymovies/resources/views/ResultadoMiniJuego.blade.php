@@ -18,14 +18,14 @@
                 <p>Mejor combo: {{ $combo }}</p>
                 <p>Respuesta correctas: {{ $correctas }}</p>
               
-              
-                {{ $answers = $answers-toArray() }}
                 @foreach($answers as $top)
+                  @foreach($top as $top1)
                     <tr bgcolor="black">
 
-                        <td>{{ $top->respuestacorrecta }}</td>
+                        <td>{{ $top1->respuestacorrecta }}</td>
 
                     </tr>
+                @endforeach
                 @endforeach
                 <p>Total de puntos: {{ $puntos }}</p>
                 @if($record == 1)
