@@ -33,6 +33,7 @@ use App\Models\User;
 Route::get('/user/{id}', [UserController::class,'show']);
 Route::view('/', 'home')->name('home');
 Route::view('/profile/edit', 'profile.edit')->middleware('auth')->name('UpdateUser');
+Route::GET('/userProfile/{iduser}', [UserController::class, 'userScores'])->name('userProfile');
 Route::GET('/Peliculas', [PeliculasController::class, 'getLista2'])->name('listarPeliculas');
 
 //Route::GET('/Peliculas', 'App\Http\Controllers\PeliculasController@getLista');

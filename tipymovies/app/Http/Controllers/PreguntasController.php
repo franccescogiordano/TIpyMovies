@@ -125,6 +125,11 @@ class PreguntasController extends Controller
     }
 
     public function puntuar(Request $request,$imdbID){
+    	$client = new \GuzzleHttp\Client();
+        $response = $client->get('http://www.omdbapi.com/',['query' => ['i' => $imdbID,'apikey'=>'169e719d']]);
+        $json_response=json_decode($response->getBody(), true);
+        $poster  = $json_response["Poster"];
+        $titulo  = $json_response["Title"];
         $iduser = $request->input('iduser');
         $r = $request->input('respuestas');
         $p = $request->input('preguntas');
@@ -132,17 +137,29 @@ class PreguntasController extends Controller
         $puntos = 0;
         $correctas = 0;
         $record = 0;
+     //   $collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
+        $collection = collect([]);
+
         for($f=0;$f<10;$f++){
+        	$array1=[];
             $pre = Pregunta::where('id',$p[$f])->get()->first();
+         //   $collection->push(['pregunta'=>$pre->pregunta]);
+            $array1['pregunta']=$pre->pregunta;
+            $array1['respuestacorrecta']=$pre->respuestaC;
+            $array1['answeruser']=$r[$f];
+        //   $collection->push(['respuestacorrecta'=>$pre->respuestaC]);
+            /*   $collection->push(['todo'=>$r[$f]]);*/
             if($pre->respuestaC == $r[$f]){
                 $combo++;
                 $puntos += 10 * ($combo);
                 $correctas++;
-
+            //    $collection->push(['answeruser'=>$r[$f]]);
             }
             else{
+            //	$collection->push(['answeruser'=>$r[$f]]);
                 $combo = 0;
             }
+            $collection->push($array1);
         }
         $imdbID = urlencode($imdbID);
         $score = new Score;
@@ -159,17 +176,26 @@ class PreguntasController extends Controller
       			$score->puntos += $puntos;
                 $score->save();
         }
+  //  var_dump($collection);
         return view('ResultadoMiniJuego',[
             'combo' => $combo,
             'puntos' => $puntos,
             'correctas' => $correctas,
-            'record' => $record
+            'record' => $record,
+            'poster' => $poster,
+            'titulo' => $titulo,
+           // 'questions'=> $collection->pluck('pregunta'),
+         //  'answers'=> $collection->pluck('respuestacorrecta'),
+           'respuestauser' => $collection
+           
+            
         ]);
     }
     public function puntuarMiniJuego1Api(Request $request){
         $iduser = $request->input('user_id');
         $puntos = $request->input('puntos');
         $imdbID = $request->input('imdbID');
+       //  $collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
         $record = 0;
         $score = new Score;
         $score = Score::where('user_id',$iduser)->where('imdbID',$imdbID)->get()->first();
@@ -189,7 +215,7 @@ class PreguntasController extends Controller
     }
 
     public function puntuar2(Request $request){
-
+//$collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
         $r = $request->input('respuestas');
         $p = $request->input('preguntas');
         $combo = 0;
@@ -200,10 +226,12 @@ class PreguntasController extends Controller
             $pre = Pregunta::where('id',$p[$f])->get()->first();
             if($pre->respuestaC == $r[$f]){
                 $combo++;
+                 //   $collection->push(['respuestacorrecta'=>$r[$f],'respuestaincorrecta'=>'Ninguna']);
                 $puntos += 10 * ($combo);
                 $correctas++;
             }
             else{
+                 // $collection->push(['respuestacorrecta'=>'Ninguna','respuestaincorrecta'=>$r[$f]]);
                 $combo = 0;
             }
         }
@@ -212,6 +240,7 @@ class PreguntasController extends Controller
             'puntos' => $puntos,
             'correctas' => $correctas,
             'record' => $record
+           // 'answers'=> $collection->toArray()
         ]);
     }
 
@@ -222,6 +251,7 @@ class PreguntasController extends Controller
     public function topten(){
 	$posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
     $lo10masalto= $posts->take(10);
+    var_dump($lo10masalto);
     return view('Ranking', [
         'topten' => $lo10masalto
         ]);
