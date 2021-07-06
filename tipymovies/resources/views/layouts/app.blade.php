@@ -24,8 +24,6 @@
         <div id="topbar" class="hoc clear">
         <div class="fl_left">
             <ul class="nospace">
-           <li><a href="{{ route('home') }}"> <img src="{{asset('images/house.png')}}"><i></i></a></li>
-            <li><a href="#">Acerca de</a></li>
             <li><a href="#">Contacto</a></li>
             </ul>
 
@@ -64,7 +62,7 @@
 
 
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-					<a class="nav-link" href="{{ route('home')}}">TIPY MOVIES</a>
+				<a class="nav-link" href="{{ route('home')}}"><img class="logotipymovies" src="{{asset('images/alras.png')}}"></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
