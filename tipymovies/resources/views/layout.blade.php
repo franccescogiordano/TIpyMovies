@@ -73,6 +73,7 @@
                             @endauth
 
                             <li class="nav-item"><a  class="nav-link" href="{{ route('topten') }}">Ranking</a></li>
+                             <li class="nav-item"><a  class="nav-link" href="{{ route('toptentrivia') }}">Ranking Trivia</a></li>
 						</ul>
 
 
