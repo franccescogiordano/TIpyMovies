@@ -329,6 +329,14 @@ class PreguntasController extends Controller
         ]);
     }
 
+        public function toptentrivia(){
+	$posts = Score2::leftJoin('users', 'scores2.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
+    $lo10masalto= $posts->take(10);
+    return view('RankingTrivia', [
+        'topten' => $lo10masalto
+        ]);
+    }
+
     public function toptenMovil(){
         $posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
         $lo10masalto= $posts->take(10);

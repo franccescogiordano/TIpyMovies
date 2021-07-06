@@ -24,7 +24,13 @@
         <div id="topbar" class="hoc clear">
         <div class="fl_left">
             <ul class="nospace">
+<<<<<<< HEAD
             <li><a href="#">Contacto</a></li>
+=======
+
+            <li><a href="{{ route('ContactUs') }}">Acerca de</a></li>
+
+>>>>>>> 28e21e7c6877b5a6045f0fe7fe940f053b8eb6d4
             </ul>
 
         </div>
@@ -62,7 +68,13 @@
 
 
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<<<<<<< HEAD
 				<a class="nav-link" href="{{ route('home')}}"><img class="logotipymovies" src="{{asset('images/alras.png')}}"></a>
+=======
+
+					<a class="nav-link" href="{{ route('home')}}"><img class="logotipymovies" src="{{asset('images/alras.png')}}"></a>
+
+>>>>>>> 28e21e7c6877b5a6045f0fe7fe940f053b8eb6d4
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
@@ -72,7 +84,9 @@
 							<li class="nav-item"><a class="nav-link" href="{{ route('listarPeliculas.busqueda',['texto_busqueda' => 'pulp']) }}">Peliculas</a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('listarSeries.busqueda',['texto_busqueda' => 'lost']) }}">Series</a></li>
+							    @auth
 							<li class="nav-item"><a  class="nav-link" href="{{ route('MiniJuego2') }}">Trivia</a></li>
+							@endauth
                             <li class="nav-item"><a  class="nav-link" href="{{ route('topten') }}">Ranking</a></li>
 						</ul>
 

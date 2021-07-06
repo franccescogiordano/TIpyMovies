@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Http;
 
 //agregado
 use App\Http\Resources\UserResource;
-use App\Http\Controllers\ContactUsController;
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PeliculasController;
 use App\http\Controllers\PreguntasController;
@@ -33,12 +33,11 @@ use App\Models\User;
 Route::get('/user/{id}', [UserController::class,'show']);
 Route::view('/', 'home')->name('home');
 Route::view('/profile/edit', 'profile.edit')->middleware('auth')->name('UpdateUser');
-Route::GET('/userProfile/{iduser}', [UserController::class, 'userScores'])->name('userProfile');
 Route::GET('/Peliculas', [PeliculasController::class, 'getLista2'])->name('listarPeliculas');
 
 //Route::GET('/Peliculas', 'App\Http\Controllers\PeliculasController@getLista');
 
-Route::GET('/Peliculasxd/{idchossen}/{titlepeli}', [PeliculasController::class, 'mostraruna'])->name('DetallePeliculas');
+	Route::GET('/Peliculasxd/{idchossen}/{titlepeli}', [PeliculasController::class, 'mostraruna'])->name('DetallePeliculas');
 
 Route::GET('/Peliculas/{texto_busqueda}', [PeliculasController::class, 'getLista'])->name('listarPeliculas.busqueda');
 
@@ -91,7 +90,15 @@ Route::POST('/MiniJuego1/Puntuacion/{imdbID}/{titulo}',[PreguntasController::cla
 
 Route::POST('/MiniJuego1/Puntuacion',[PreguntasController::class,'puntuar2'])->name('Puntuar2');
 
+<<<<<<< HEAD
 Route::GET('/Ranking', [PreguntasController::class,'getTopScore'])->name('ranking');
 Route::view('/contactUs', 'contactUs')->name('ContactUs');
 Route::GET('/contact-us', [ContactUsController::class,'contactUs'])->name('contact-us');
 Route::POST('/contactUs', [ContactUsController::class,'contactUsPost'])->name('contactus.store');
+=======
+Route::GET('/toptentrivia', [PreguntasController::class,'toptentrivia'])->name('toptentrivia');
+//Route::POST('/',[PreguntasController::class,'puntuar'])->name('puntuar');
+Route::view('/contactUs', 'contactUs')->name('ContactUs');
+Route::GET('/contact-us', [ContactUsController::class,'contactUs'])->name('contact-us');
+Route::POST('/contactUs', [ContactUsController::class,'contactUsPost'])->name('contactus.store');
+>>>>>>> 28e21e7c6877b5a6045f0fe7fe940f053b8eb6d4
