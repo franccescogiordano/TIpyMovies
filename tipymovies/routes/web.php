@@ -2,27 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-
-*/
-
-
-/*Route::view('registro', 'auth.register')->name('register');*/
-
-
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); NO SABEMOS QUE HACE
-
-
-//agregado
 use App\Http\Resources\UserResource;
 
 use App\Http\Controllers\UserController;
@@ -34,7 +13,7 @@ Route::get('/user/{id}', [UserController::class,'show']);
 Route::view('/', 'home')->name('home');
 Route::view('/profile/edit', 'profile.edit')->middleware('auth')->name('UpdateUser');
 Route::GET('/Peliculas', [PeliculasController::class, 'getLista2'])->name('listarPeliculas');
-
+Route::GET('/userProfile/{iduser}', [UserController::class, 'userScores'])->name('userProfile');
 //Route::GET('/Peliculas', 'App\Http\Controllers\PeliculasController@getLista');
 
 	Route::GET('/Peliculasxd/{idchossen}/{titlepeli}', [PeliculasController::class, 'mostraruna'])->name('DetallePeliculas');
@@ -47,7 +26,7 @@ Route::GET('/Series/{idchossen}/{titlepeli}', [PeliculasController::class, 'most
 
 Route::GET('/Series/{texto_busqueda}', [PeliculasController::class, 'getListaSeries'])->name('listarSeries.busqueda');
 
-
+Route::GET('/RankingTrivia', [PreguntasController::class, 'toptentrivia'])->name('toptentrivia');
 
 Route::GET('/Series/{texto_busqueda}/{page}', [PeliculasController::class, 'getListaSeries'])->name('listarSeries.busqueda.page');
 
