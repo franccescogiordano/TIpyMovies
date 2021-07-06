@@ -412,11 +412,14 @@ input:focus, textarea:focus, *:required:focus{border-color:#D01818;}
 	.font-x3{font-size:1.6rem;}
 }
 
+.textoNegro{
+	color: black;
+}
 
-
-
-
-
+.textoBold{
+	color: white;
+	font-weight: bold;
+}
 
 .botoncito{
 

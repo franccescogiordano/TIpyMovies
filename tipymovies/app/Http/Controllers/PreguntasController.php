@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pregunta;
 use App\Models\Pelicula;
 use App\Models\Score;
+use App\Models\Score2;
 use App\Models\User;
 use App\Models\Trivia;
 use Illuminate\Http\Request;
@@ -91,9 +92,37 @@ class PreguntasController extends Controller
         $trivia  = json_encode(array('preguntas'=>$pre));
         return  $trivia;
     }
+    public function getCuestionarioMovil2(){
+        $pre = Pregunta::get()->random(10)->shuffle();
+        $client = new \GuzzleHttp\Client();
+        $poster =[];
+        $titulo =[];
+        foreach($pre as $pregunta){
+            $response = $client->get('http://www.omdbapi.com/',['query' => ['i' => $pregunta->imdbID,'apikey'=>'169e719d']]);
+            $json_response=json_decode($response->getBody(), true);
+            $poster[] = $json_response["Poster"];
+            $titulo[] = $json_response["Title"];
+        }
+        $collection = collect();
+        for($f=0;$f<10;$f++){
+            $collection->push([
+                'id' => $pre[$f]->id,
+                'pregunta' => $pre[$f]->pregunta,
+                'respuestaC' => $pre[$f]->respuestaC,
+                'respuestaI1' => $pre[$f]->respuestaI1,
+                'respuestaI2' => $pre[$f]->respuestaI2,
+                'respuestaI3' => $pre[$f]->respuestaI3,
+                'poster' => $poster[$f],
+                'titulo' => $titulo[$f]
+            ]);
+        }
+
+        $trivia  = json_encode(array('preguntas'=>$collection));
+        return  $trivia;
+    }
 
     public function getCuestionario2(){
-        $pre = Pregunta::get()->random(10);
+        $pre = Pregunta::get()->random(10)->shuffle();
         $client = new \GuzzleHttp\Client();
         $poster =[];
         foreach($pre as $pregunta){
@@ -125,6 +154,12 @@ class PreguntasController extends Controller
     }
 
     public function puntuar(Request $request,$imdbID){
+    	$client = new \GuzzleHttp\Client();
+        $response = $client->get('http://www.omdbapi.com/',['query' => ['i' => $imdbID,'apikey'=>'169e719d']]);
+        $json_response=json_decode($response->getBody(), true);
+        $poster  = $json_response["Poster"];
+        $titulo  = $json_response["Title"];
+        $imdbIDxd  = $json_response["imdbID"];
         $iduser = $request->input('iduser');
         $r = $request->input('respuestas');
         $p = $request->input('preguntas');
@@ -132,17 +167,26 @@ class PreguntasController extends Controller
         $puntos = 0;
         $correctas = 0;
         $record = 0;
+
+        $collection = collect([]);
+
         for($f=0;$f<10;$f++){
+        	$array1=[];
             $pre = Pregunta::where('id',$p[$f])->get()->first();
+
+            $array1['pregunta']=$pre->pregunta;
+            $array1['respuestacorrecta']=$pre->respuestaC;
+            $array1['answeruser']=$r[$f];
             if($pre->respuestaC == $r[$f]){
                 $combo++;
                 $puntos += 10 * ($combo);
                 $correctas++;
-
             }
             else{
+
                 $combo = 0;
             }
+            $collection->push($array1);
         }
         $imdbID = urlencode($imdbID);
         $score = new Score;
@@ -159,17 +203,27 @@ class PreguntasController extends Controller
       			$score->puntos += $puntos;
                 $score->save();
         }
+  //  var_dump($collection);
         return view('ResultadoMiniJuego',[
             'combo' => $combo,
             'puntos' => $puntos,
             'correctas' => $correctas,
-            'record' => $record
+            'record' => $record,
+            'poster' => $poster,
+            'titulo' => $titulo,
+            'imdbIDxd' => $imdbIDxd,
+           // 'questions'=> $collection->pluck('pregunta'),
+         //  'answers'=> $collection->pluck('respuestacorrecta'),
+           'respuestauser' => $collection
+
+
         ]);
     }
     public function puntuarMiniJuego1Api(Request $request){
         $iduser = $request->input('user_id');
         $puntos = $request->input('puntos');
         $imdbID = $request->input('imdbID');
+       //  $collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
         $record = 0;
         $score = new Score;
         $score = Score::where('user_id',$iduser)->where('imdbID',$imdbID)->get()->first();
@@ -188,30 +242,78 @@ class PreguntasController extends Controller
         return json_encode($record);
     }
 
-    public function puntuar2(Request $request){
+    public function puntuarMiniJuego2Api(Request $request){
+        $iduser = $request->input('user_id');
+        $puntos = $request->input('puntos');
+        $record = 0;
+        $score = new Score2;
+        $score = Score2::where('user_id',$iduser)->get()->first();
+        if($score == null){
+            $score = new Score2;
+            $score->puntos = $puntos;
+            $score->user_id = $iduser;
+            $score->save();
+        }
+        else{
+      		$score->puntos += $puntos;
+            $score->save();
+        }
+        $record = $score->puntos;
+        return json_encode($record);
+    }
 
+    public function puntuar2(Request $request){
+//$collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
         $r = $request->input('respuestas');
         $p = $request->input('preguntas');
+        $id_user = $request->input('id_user');
         $combo = 0;
+        $mejorCombo = 0;
         $puntos = 0;
         $correctas = 0;
         $record = 0;
+
+        $collection = collect([]);
         for($f=0;$f<10;$f++){
+            $array1=[];
             $pre = Pregunta::where('id',$p[$f])->get()->first();
+            $array1['pregunta']=$pre->pregunta;
+            $array1['respuestacorrecta']=$pre->respuestaC;
+            $array1['answeruser']=$r[$f];
             if($pre->respuestaC == $r[$f]){
                 $combo++;
+                 //   $collection->push(['respuestacorrecta'=>$r[$f],'respuestaincorrecta'=>'Ninguna']);
                 $puntos += 10 * ($combo);
                 $correctas++;
+                if($combo > $mejorCombo)
+                    $mejorCombo = $combo;
             }
             else{
+                 // $collection->push(['respuestacorrecta'=>'Ninguna','respuestaincorrecta'=>$r[$f]]);
                 $combo = 0;
             }
+            $collection->push($array1);
+        }
+        $score = new Score2;
+        $score = Score2::where('user_id',$id_user)->get()->first();
+        if($score == null){
+            $score = new Score2;
+            $score->puntos = $puntos;
+            $score->user_id = $id_user;
+            $score->save();
+            $record = 1;
+        }
+        else{
+      			$score->puntos += $puntos;
+                $score->save();
         }
         return view('ResultadoMiniJuego',[
-            'combo' => $combo,
+            'combo' => $mejorCombo,
             'puntos' => $puntos,
             'correctas' => $correctas,
-            'record' => $record
+            'record' => $record,
+            'mj2' =>  1,
+            'respuestauser' => $collection
         ]);
     }
 
@@ -223,6 +325,14 @@ class PreguntasController extends Controller
 	$posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
     $lo10masalto= $posts->take(10);
     return view('Ranking', [
+        'topten' => $lo10masalto
+        ]);
+    }
+
+        public function toptentrivia(){
+	$posts = Score2::leftJoin('users', 'scores2.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
+    $lo10masalto= $posts->take(10);
+    return view('RankingTrivia', [
         'topten' => $lo10masalto
         ]);
     }

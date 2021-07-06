@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Http;
 
 //agregado
 use App\Http\Resources\UserResource;
-use App\Http\Controllers\ContactUsController;
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PeliculasController;
 use App\http\Controllers\PreguntasController;
@@ -37,7 +37,7 @@ Route::GET('/Peliculas', [PeliculasController::class, 'getLista2'])->name('lista
 
 //Route::GET('/Peliculas', 'App\Http\Controllers\PeliculasController@getLista');
 
-Route::GET('/Peliculasxd/{idchossen}/{titlepeli}', [PeliculasController::class, 'mostraruna'])->name('DetallePeliculas');
+	Route::GET('/Peliculasxd/{idchossen}/{titlepeli}', [PeliculasController::class, 'mostraruna'])->name('DetallePeliculas');
 
 Route::GET('/Peliculas/{texto_busqueda}', [PeliculasController::class, 'getLista'])->name('listarPeliculas.busqueda');
 
@@ -90,10 +90,8 @@ Route::POST('/MiniJuego1/Puntuacion/{imdbID}/{titulo}',[PreguntasController::cla
 
 Route::POST('/MiniJuego1/Puntuacion',[PreguntasController::class,'puntuar2'])->name('Puntuar2');
 
-Route::GET('/Ranking', [PreguntasController::class,'getTopScore'])->name('ranking');
+Route::GET('/toptentrivia', [PreguntasController::class,'toptentrivia'])->name('toptentrivia');
 //Route::POST('/',[PreguntasController::class,'puntuar'])->name('puntuar');
 Route::view('/contactUs', 'contactUs')->name('ContactUs');
-//Route::GET('contact-us', 'ContactUsController@contactUs');
 Route::GET('/contact-us', [ContactUsController::class,'contactUs'])->name('contact-us');
-//Route::POST('contact-us',['as'=>'contactus.store','uses'=>'ContactUsController@contactUsPost']);
 Route::POST('/contactUs', [ContactUsController::class,'contactUsPost'])->name('contactus.store');

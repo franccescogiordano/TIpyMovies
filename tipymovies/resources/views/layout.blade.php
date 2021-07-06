@@ -21,7 +21,9 @@
 			<div id="topbar" class="hoc clear">
 				<div class="fl_left">
 					<ul class="nospace">
+
 						<li><a href="{{ route('ContactUs') }}">Acerca de</a></li>
+
 					</ul>
 
 				</div>
@@ -31,7 +33,7 @@
 						<ul class="nospace">
 							@auth
 							<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesion</a></li>
-							<li> <a href="{{ route('UpdateUser') }}" > {{ Auth::user()->username }}</a></li>
+							<li> <a href="{{ route('userProfile',['iduser' => Auth::user()->id]) }}" > {{ Auth::user()->username }}</a></li>
 							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
 								@csrf
 							</form>
@@ -57,7 +59,9 @@
 
 
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
 				<a class="nav-link" href="{{ route('home')}}"><img class="logotipymovies" src="{{asset('images/alras.png')}}"></a>
+
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
@@ -66,8 +70,12 @@
 							<li class="nav-item"><a class="nav-link" href="{{ route('listarPeliculas.busqueda',['texto_busqueda' => 'pulp']) }}">Peliculas</a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('listarSeries.busqueda',['texto_busqueda' => 'lost']) }}">Series</a></li>
-							<li class="nav-item"><a  class="nav-link" href="{{ route('MiniJuego2') }}">Trivia</a></li>
+                            @auth
+                                <li class="nav-item"><a  class="nav-link" href="{{ route('MiniJuego2') }}">Trivia</a></li>
+                            @endauth
+
                             <li class="nav-item"><a  class="nav-link" href="{{ route('topten') }}">Ranking</a></li>
+                             <li class="nav-item"><a  class="nav-link" href="{{ route('toptentrivia') }}">Ranking Trivia</a></li>
 						</ul>
 
 
