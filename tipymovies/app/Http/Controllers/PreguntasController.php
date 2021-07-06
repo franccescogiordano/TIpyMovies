@@ -218,7 +218,23 @@ class PreguntasController extends Controller
     }
 
     public function puntuarMiniJuego2Api(Request $request){
-
+        $iduser = $request->input('user_id');
+        $puntos = $request->input('puntos');
+        $record = 0;
+        $score = new Score2;
+        $score = Score2::where('user_id',$iduser)->get()->first();
+        if($score == null){
+            $score = new Score2;
+            $score->puntos = $puntos;
+            $score->user_id = $iduser;
+            $score->save();
+        }
+        else{
+      		$score->puntos += $puntos;
+            $score->save();
+        }
+        $record = $score->puntos;
+        return json_encode($record);
     }
 
     public function puntuar2(Request $request){
