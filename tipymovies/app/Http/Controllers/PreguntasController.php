@@ -167,26 +167,23 @@ class PreguntasController extends Controller
         $puntos = 0;
         $correctas = 0;
         $record = 0;
-     //   $collection = collect(['respuestacorrecta' => 'primera', 'respuestaincorrecta' => 'primera']);
+
         $collection = collect([]);
 
         for($f=0;$f<10;$f++){
         	$array1=[];
             $pre = Pregunta::where('id',$p[$f])->get()->first();
-         //   $collection->push(['pregunta'=>$pre->pregunta]);
+
             $array1['pregunta']=$pre->pregunta;
             $array1['respuestacorrecta']=$pre->respuestaC;
             $array1['answeruser']=$r[$f];
-        //   $collection->push(['respuestacorrecta'=>$pre->respuestaC]);
-            /*   $collection->push(['todo'=>$r[$f]]);*/
             if($pre->respuestaC == $r[$f]){
                 $combo++;
                 $puntos += 10 * ($combo);
                 $correctas++;
-            //    $collection->push(['answeruser'=>$r[$f]]);
             }
             else{
-            //	$collection->push(['answeruser'=>$r[$f]]);
+
                 $combo = 0;
             }
             $collection->push($array1);
@@ -218,8 +215,8 @@ class PreguntasController extends Controller
            // 'questions'=> $collection->pluck('pregunta'),
          //  'answers'=> $collection->pluck('respuestacorrecta'),
            'respuestauser' => $collection
-           
-            
+
+
         ]);
     }
     public function puntuarMiniJuego1Api(Request $request){
@@ -275,8 +272,14 @@ class PreguntasController extends Controller
         $puntos = 0;
         $correctas = 0;
         $record = 0;
+
+        $collection = collect([]);
         for($f=0;$f<10;$f++){
+            $array1=[];
             $pre = Pregunta::where('id',$p[$f])->get()->first();
+            $array1['pregunta']=$pre->pregunta;
+            $array1['respuestacorrecta']=$pre->respuestaC;
+            $array1['answeruser']=$r[$f];
             if($pre->respuestaC == $r[$f]){
                 $combo++;
                  //   $collection->push(['respuestacorrecta'=>$r[$f],'respuestaincorrecta'=>'Ninguna']);
@@ -289,6 +292,7 @@ class PreguntasController extends Controller
                  // $collection->push(['respuestacorrecta'=>'Ninguna','respuestaincorrecta'=>$r[$f]]);
                 $combo = 0;
             }
+            $collection->push($array1);
         }
         $score = new Score2;
         $score = Score2::where('user_id',$id_user)->get()->first();
@@ -307,8 +311,9 @@ class PreguntasController extends Controller
             'combo' => $mejorCombo,
             'puntos' => $puntos,
             'correctas' => $correctas,
-            'record' => $record
-           // 'answers'=> $collection->toArray()
+            'record' => $record,
+            'mj2' =>  1,
+            'respuestauser' => $collection
         ]);
     }
 
