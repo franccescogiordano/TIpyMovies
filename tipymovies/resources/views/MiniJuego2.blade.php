@@ -43,7 +43,7 @@
                                 <input style="display: none;" type="text" name="respuestas[]" id="r8" value="">
                                 <input style="display: none;" type="text" name="respuestas[]" id="r9" value="">
                                 @auth
-                                <input style="display: none;" type="text" name="iduser" value="{{ Auth::user()->id }}">
+                                <input style="display: none;" type="text" name="id_user" value="{{ Auth::user()->id }}">
                                 @endauth
                                 <button class="btn btn-default respuestas" type="button" onClick="javascript:next(1);" value="" id="res1" name="res1">.</button><br><br>
                                 <button class="btn btn-default respuestas" type="button" onClick="javascript:next(2);" value="" id="res2" name="res2">.</button><br><br>

@@ -68,7 +68,10 @@
 							<li class="nav-item"><a class="nav-link" href="{{ route('listarPeliculas.busqueda',['texto_busqueda' => 'pulp']) }}">Peliculas</a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="{{ route('listarSeries.busqueda',['texto_busqueda' => 'lost']) }}">Series</a></li>
-							<li class="nav-item"><a  class="nav-link" href="{{ route('MiniJuego2') }}">Trivia</a></li>
+                            @auth
+                                <li class="nav-item"><a  class="nav-link" href="{{ route('MiniJuego2') }}">Trivia</a></li>
+                            @endauth
+
                             <li class="nav-item"><a  class="nav-link" href="{{ route('topten') }}">Ranking</a></li>
 						</ul>
 

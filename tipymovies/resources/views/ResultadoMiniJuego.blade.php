@@ -11,10 +11,16 @@
 		<div id="pageintro" class="hoc clear">
 			<article>
 				<div>
-					<p class="heading">Resultados de {{ $titulo }}</p>
+                    @if($mj2 != 1)
+                        <p class="heading">Resultados de {{ $titulo }}</p>
+					@endif
+
 
 					<div class="container">
-						<img src="{{ $poster }}">
+                        @if($mj2 != 1)
+                            <img src="{{ $poster }}">
+						@endif
+
 						<p>Mejor combo: {{ $combo }}</p>
 						<p>Respuesta correctas: {{ $correctas }}</p>
 						<p>Puntos totales: {{ $puntos }}</p>
@@ -52,7 +58,12 @@
 
 
 				<div class="col-md-8 offset-md-4">
-					<a class="botoncito"  href="{{ route('DetallePeliculas',[ 'idchossen' => $imdbIDxd , 'titlepeli' => $titulo ]) }}">VOLVER AL DETALLE</a>
+                    @if($mj2 != 1)
+                        <a class="botoncito"  href="{{ route('DetallePeliculas',[ 'idchossen' => $imdbIDxd , 'titlepeli' => $titulo ]) }}">VOLVER AL DETALLE</a>
+					@else
+                        <a class="botoncito"  href="{{ route('home') }}">VOLVER AL INICIO</a>
+                    @endif
+
 
 				</div>
 				<!-- JAVASCRIPTS -->
