@@ -3,10 +3,13 @@ height: 25px;
 font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .agregar{
+  width: 15vh !important;
+  height: 3vh !important;
+}
+.volver{
   width: 25vh !important;
-  height: 6vh !important;
-  margin: 0 auto !important;
-
+  height: 3vh !important;
+  float: right;
 }
 .CPreguntas{
     margin: auto; 
@@ -33,4 +36,13 @@ font-family: Georgia, 'Times New Roman', Times, serif;
 .respuestas{
     width: 40%;
     height: 30px;
+}
+.pregunta{
+height: 3vh !important;
+}
+.rc{
+  background-color: #D5F5E3 !important;
+}
+.ri{
+    background-color: #FADBD8 !important;
 }

@@ -13,10 +13,10 @@
                 <article>
                     <div>
                         <div style="align-items: center;">
-                        	<h2 class="heading">RESPONDE ESTAS 10 PREGUNTAS DE: {{ $titulo }}</h2>
+                        	<h3 class="heading">RESPONDE ESTAS 10 PREGUNTAS DE: {{ $titulo }}</h3>
                         <img src="{{ $poster }}">
                         
-                        <h2 id="pregunta" class="heading">pregunta</h2>
+                        <h5 id="pregunta" class="heading">pregunta</h5>
 
                         <div class="container">
                             <form id="formPreguntas" action="{{ route('Puntuar',['imdbID' => $imdbID,'titulo' => $titulo ]) }}" method="POST">
