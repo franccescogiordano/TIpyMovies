@@ -130,6 +130,7 @@ class PreguntasController extends Controller
         $json_response=json_decode($response->getBody(), true);
         $poster  = $json_response["Poster"];
         $titulo  = $json_response["Title"];
+        $imdbIDxd  = $json_response["imdbID"];
         $iduser = $request->input('iduser');
         $r = $request->input('respuestas');
         $p = $request->input('preguntas');
@@ -184,6 +185,7 @@ class PreguntasController extends Controller
             'record' => $record,
             'poster' => $poster,
             'titulo' => $titulo,
+            'imdbIDxd' => $imdbIDxd,
            // 'questions'=> $collection->pluck('pregunta'),
          //  'answers'=> $collection->pluck('respuestacorrecta'),
            'respuestauser' => $collection
@@ -251,7 +253,6 @@ class PreguntasController extends Controller
     public function topten(){
 	$posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
     $lo10masalto= $posts->take(10);
-    var_dump($lo10masalto);
     return view('Ranking', [
         'topten' => $lo10masalto
         ]);
