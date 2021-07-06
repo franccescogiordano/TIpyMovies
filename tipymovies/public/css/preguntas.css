@@ -5,8 +5,11 @@ font-family: Georgia, 'Times New Roman', Times, serif;
 .agregar{
   width: 15vh !important;
   height: 3vh !important;
-  margin-left: 28vh !important;
-
+}
+.volver{
+  width: 25vh !important;
+  height: 3vh !important;
+  float: right;
 }
 .CPreguntas{
     margin: auto; 

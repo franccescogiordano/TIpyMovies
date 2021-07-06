@@ -13,6 +13,7 @@
             <div id="pageintro" class="hoc clear">
                 <article>
                     <div class="CPreguntas" >
+                    
                         <h2 class="heading">Agregar Pregunta</h2>
 
                         <div class="container">
@@ -26,7 +27,8 @@
                             <input class="form-control mr-sm-2" type="text" name="imdbID" value="{{$imdbID}}" style="display: none;">
                             <input class="form-control mr-sm-2" type="text" name="titulo" value="{{$titulo}}" style="display: none;">
 							<button class="btn btn-default my-2 my-sm-0 agregar" type="submit" name="btnBuscar">Agregar</button>
-
+                            <a href="{{ route('DetallePeliculas',[ 'idchossen' => $imdbID , 'titlepeli' => $titulo ]) }}" 
+                                class="btn inverse btn-default my-2 my-sm-0 volver" type="submit" name="btnVolver">Volver a la Pelicula</a>
 						</form>
                         </div>
 
