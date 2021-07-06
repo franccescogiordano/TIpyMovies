@@ -90,15 +90,7 @@ Route::POST('/MiniJuego1/Puntuacion/{imdbID}/{titulo}',[PreguntasController::cla
 
 Route::POST('/MiniJuego1/Puntuacion',[PreguntasController::class,'puntuar2'])->name('Puntuar2');
 
-<<<<<<< HEAD
 Route::GET('/Ranking', [PreguntasController::class,'getTopScore'])->name('ranking');
 Route::view('/contactUs', 'contactUs')->name('ContactUs');
 Route::GET('/contact-us', [ContactUsController::class,'contactUs'])->name('contact-us');
 Route::POST('/contactUs', [ContactUsController::class,'contactUsPost'])->name('contactus.store');
-=======
-Route::GET('/toptentrivia', [PreguntasController::class,'toptentrivia'])->name('toptentrivia');
-//Route::POST('/',[PreguntasController::class,'puntuar'])->name('puntuar');
-Route::view('/contactUs', 'contactUs')->name('ContactUs');
-Route::GET('/contact-us', [ContactUsController::class,'contactUs'])->name('contact-us');
-Route::POST('/contactUs', [ContactUsController::class,'contactUsPost'])->name('contactus.store');
->>>>>>> 28e21e7c6877b5a6045f0fe7fe940f053b8eb6d4
