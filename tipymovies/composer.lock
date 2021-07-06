@@ -1021,6 +1021,18 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
+            "version": "v8.48.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "4c50ebbb7d1a66c5f3511261413cd499d30ba4cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/4c50ebbb7d1a66c5f3511261413cd499d30ba4cd",
+                "reference": "4c50ebbb7d1a66c5f3511261413cd499d30ba4cd",
+=======
             "version": "v8.49.0",
             "source": {
                 "type": "git",
@@ -1031,6 +1043,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/855a919d08b45f93cb3cf709736528c3d1531884",
                 "reference": "855a919d08b45f93cb3cf709736528c3d1531884",
+>>>>>>> f2dbca0c397e00b0fd648a97374e73042d743214
                 "shasum": ""
             },
             "require": {
@@ -1185,7 +1198,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
+            "time": "2021-06-25T23:57:38+00:00"
+=======
             "time": "2021-06-29T13:50:21+00:00"
+>>>>>>> f2dbca0c397e00b0fd648a97374e73042d743214
         },
         {
             "name": "laravel/tinker",
@@ -1734,6 +1751,18 @@
         },
         {
             "name": "nesbot/carbon",
+<<<<<<< HEAD
+            "version": "2.49.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/briannesbitt/Carbon.git",
+                "reference": "93d9db91c0235c486875d22f1e08b50bdf3e6eee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/93d9db91c0235c486875d22f1e08b50bdf3e6eee",
+                "reference": "93d9db91c0235c486875d22f1e08b50bdf3e6eee",
+=======
             "version": "2.50.0",
             "source": {
                 "type": "git",
@@ -1744,6 +1773,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/f47f17d17602b2243414a44ad53d9f8b9ada5fdb",
                 "reference": "f47f17d17602b2243414a44ad53d9f8b9ada5fdb",
+>>>>>>> f2dbca0c397e00b0fd648a97374e73042d743214
                 "shasum": ""
             },
             "require": {
@@ -1823,7 +1853,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
+            "time": "2021-06-02T07:31:40+00:00"
+=======
             "time": "2021-06-28T22:38:45+00:00"
+>>>>>>> f2dbca0c397e00b0fd648a97374e73042d743214
         },
         {
             "name": "nikic/php-parser",
@@ -5695,6 +5729,18 @@
         },
         {
             "name": "laravel/sail",
+<<<<<<< HEAD
+            "version": "v1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sail.git",
+                "reference": "77fb31eb48de9971af1fe0c6b47be3da6b869dfd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/77fb31eb48de9971af1fe0c6b47be3da6b869dfd",
+                "reference": "77fb31eb48de9971af1fe0c6b47be3da6b869dfd",
+=======
             "version": "v1.8.3",
             "source": {
                 "type": "git",
@@ -5705,6 +5751,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sail/zipball/dc7a9ca301fc89e9eaa164d58eac39a39c2e93b0",
                 "reference": "dc7a9ca301fc89e9eaa164d58eac39a39c2e93b0",
+>>>>>>> f2dbca0c397e00b0fd648a97374e73042d743214
                 "shasum": ""
             },
             "require": {
@@ -5751,7 +5798,11 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
+<<<<<<< HEAD
+            "time": "2021-06-08T15:18:38+00:00"
+=======
             "time": "2021-06-29T21:27:36+00:00"
+>>>>>>> f2dbca0c397e00b0fd648a97374e73042d743214
         },
         {
             "name": "mockery/mockery",
