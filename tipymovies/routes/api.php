@@ -27,3 +27,5 @@ Route::GET('/MiniJuego1',[PreguntasController::class,'getCuestionarioMovil1']);
 Route::GET('/agregarPregunta',[PreguntasController::class, 'AgregarMovil']);
 Route::GET('/RankingMovil', [PreguntasController::class,'toptenMovil'])->name('rankingmovil');
 Route::GET('/PuntuarMiniJuego1', [PreguntasController::class,'puntuarMiniJuego1Api']);
+
+

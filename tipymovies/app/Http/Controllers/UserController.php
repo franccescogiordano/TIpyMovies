@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Score;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
     /**
@@ -55,4 +57,26 @@ class UserController extends Controller
             ]);
         }
 }
+    
+    public function userScores($iduser)
+    {
+        $iduser=urlencode($iduser);        
+        $posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->where('users.id', $iduser)->get();
+        $client = new \GuzzleHttp\Client();
+        $peliculas = collect([]);
+        foreach($posts as $post2){
+            $array1 = [];
+            $response = $client->get('http://www.omdbapi.com/',['query' => ['i' => $post2->imdbID,'apikey'=>'169e719d']]);
+            $json_response=json_decode($response->getBody(), true);
+            $titulo=$json_response["Title"];
+            $array1['puntos']=$post2->puntos;
+            $array1['titulo']=$titulo;
+            $peliculas->push($array1);
+        }
+        //$peliJson = json_encode($peliculas);
+        //var_dump($peliJson);
+        return view('userProfile', [
+                'pelisUser' => $peliculas
+            ]);
+    }
 }
