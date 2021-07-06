@@ -417,7 +417,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#D01818;}
 }
 
 .textoBold{
-	color: black;
+	color: white;
 	font-weight: bold;
 }
 

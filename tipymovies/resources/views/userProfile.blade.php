@@ -1,7 +1,6 @@
     @extends('layouts.app')
 
     @section('content')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <div class="container mt--8 pb-5">
         <div class="row justify-content-center">
             <div class="card-body px-lg-5 py-lg-5">
@@ -50,27 +49,20 @@
                     <br>
                     <div class="container">
                         <table class="table table-dark" id="scores">
-                            <tr>
-                                <th scope="col">Nombre de Usuario</th>
-                                <th scope="col">Puntos</th>
-                            </tr>
-                            <script>
-                                $(document).ready(function () {
-
-                                    $.getJSON('pelisUser', function (data) {
-                                        var peli = '';
-                                        $.each(data, function (key, value) {
-                                            peli += '<tr>';
-                                            peli += '<td>' + 
-                                                value.username1 + '</td>';
-                                            peli += '<td>' + 
-                                                value.puntos1 + '</td>';
-                                            peli += '</tr>';
-                                        });
-                                    $('#scores').append(peli);
-                                    });
-                                });
-                            </script>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Titulo de película</th>
+                                    <th scope="col">Puntos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($pelisUser as $peli)
+                                <tr bgcolor="black">
+                                    <td>{{ $peli['titulo']}}</td>
+                                    <td>{{ $peli['puntos']}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
 
@@ -84,25 +76,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
-
-
-<!--<script>
-
-    $(function() {
-        //var num = 1;
-        //var u = "username";
-        //var p = "puntos";
-        window.__pelisUser = JSON.parse("{!!$pelisUser!!}");
-        $.getJSON($pelisUser, function(data) {
-            $.each(data, function(i, f) {
-                //var = u.concat(num);
-                //var = p.concat(num);
-                var tblRow = "<tr>" + "<td>" + f.username1 + "</td>" + "<td>" + f.puntos1 + "</tr>";
-                $(tblRow).appendTo("#scores tbody");
-                //num = num + 1;
-            });
-        });
-    });
-</script>-->
 @endsection

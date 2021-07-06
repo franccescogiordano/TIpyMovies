@@ -61,21 +61,22 @@ class UserController extends Controller
     public function userScores($iduser)
     {
         $iduser=urlencode($iduser);        
-        $posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->groupBy('username')->where('users.id', $iduser)->get();
+        $posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->where('users.id', $iduser)->get();
         $client = new \GuzzleHttp\Client();
         $peliculas = collect([]);
-        $i = 0;
         foreach($posts as $post2){
-            $i = $i + 1;
+            $array1 = [];
             $response = $client->get('http://www.omdbapi.com/',['query' => ['i' => $post2->imdbID,'apikey'=>'169e719d']]);
             $json_response=json_decode($response->getBody(), true);
             $titulo=$json_response["Title"];
-            $peliculas->put('username' . $i,$post2->username);
-            $peliculas->put('puntos' . $i,$post2->puntos);
-            $peliculas->put('titulo' . $i,$titulo);
+            $array1['puntos']=$post2->puntos;
+            $array1['titulo']=$titulo;
+            $peliculas->push($array1);
         }
-        $peliJson = json_encode($peliculas);
+        //$peliJson = json_encode($peliculas);
         //var_dump($peliJson);
-        return view('userProfile')->with('pelisUser', $peliJson);
+        return view('userProfile', [
+                'pelisUser' => $peliculas
+            ]);
     }
 }
