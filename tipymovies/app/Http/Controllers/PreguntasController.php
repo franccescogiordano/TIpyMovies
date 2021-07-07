@@ -204,6 +204,7 @@ class PreguntasController extends Controller
                 $score->save();
         }
   //  var_dump($collection);
+  $mj2=0;
         return view('ResultadoMiniJuego',[
             'combo' => $combo,
             'puntos' => $puntos,
@@ -214,7 +215,8 @@ class PreguntasController extends Controller
             'imdbIDxd' => $imdbIDxd,
            // 'questions'=> $collection->pluck('pregunta'),
          //  'answers'=> $collection->pluck('respuestacorrecta'),
-           'respuestauser' => $collection
+           'respuestauser' => $collection,
+           'mj2'=>$mj2
 
 
         ]);
@@ -325,14 +327,6 @@ class PreguntasController extends Controller
 	$posts = Score::leftJoin('users', 'scores.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
     $lo10masalto= $posts->take(10);
     return view('Ranking', [
-        'topten' => $lo10masalto
-        ]);
-    }
-
-        public function toptentrivia(){
-	$posts = Score2::leftJoin('users', 'scores2.user_id', '=', 'users.id')->groupBy('username')->selectRaw('users.username, sum(puntos) as puntos')->orderBy('puntos', 'DESC')->get();
-    $lo10masalto= $posts->take(10);
-    return view('RankingTrivia', [
         'topten' => $lo10masalto
         ]);
     }
